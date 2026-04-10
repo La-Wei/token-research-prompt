@@ -57,10 +57,39 @@ Input ideali:
 - dati su volume, open interest, funding, basis, liquidazioni, borrow, spread, depth, se disponibili
 - il report fondamentale non sostituisce il setup tecnico, ma deve fare da contesto ereditato
 
+SOURCE DISCOVERY OBBLIGATORIA
+
+Se l utente non fornisce chart o screenshot, non fermarti subito.
+Prima di dichiarare i timeframe "insufficienti", cerca attivamente fonti affidabili che permettano di ricostruire il setup.
+
+Ordine di priorita consigliato:
+- API o chart ufficiali del protocollo / exchange principale
+- API o chart ufficiali del venue derivato piu liquido, se diverso dal venue spot
+- TradingView
+- CoinMarketCap
+- CoinGecko
+- dashboard di mercato terze solo come fallback
+
+Per token trattati su Hyperliquid, cerca prima di tutto:
+- `candleSnapshot` per 15m / 1h / 4h / 1d / 1w
+- `l2Book`
+- eventuali feed trades / websocket / info endpoint ufficiali
+
+Se il token tratta spot su una venue e perp su un altra, puoi usare entrambe, ma distingui sempre:
+- quale fonte descrive lo spot
+- quale fonte descrive il perp / positioning
+
+Se esiste una fonte che offre OHLC reali multi timeframe, non accontentarti di proxy tipo solo `7d`, `30d` o range aggregati.
+Puoi concludere `copertura dati insufficiente` solo dopo aver esplicitato:
+- quali fonti hai provato
+- quali timeframe sei riuscito a ottenere
+- quali blocchi restano davvero non osservabili
+
 REGOLE DI RIGORE
 
 - Non inventare livelli, pattern o dati non visibili nei chart forniti.
 - Se i chart sono incompleti, vecchi o poco leggibili, dillo chiaramente.
+- Non e ammissibile fermarsi a proxy aggregati se esistono chart o API ragionevolmente accessibili con OHLC reali multi-timeframe.
 - Se mancano dati su OI, funding, borrow, liquidita o liquidazioni, non fingere precisione.
 - Distingui sempre tra osservazioni visibili sui grafici, inferenze operative e scenari condizionali.
 - Distingui sempre tra:
@@ -80,11 +109,12 @@ REGOLE DI RIGORE
 ORDINE DI LAVORO OBBLIGATORIO
 
 1. Leggi prima il report fondamentale, se disponibile, ed estrai la tesi strutturale ereditata.
-2. Leggi poi i timeframe alti.
-3. Verifica allineamento o conflitto sui timeframe medi.
-4. Solo alla fine valuta il timing su timeframe bassi, se serve.
-5. Poi integra positioning, funding, OI, liquidita e squeeze risk.
-6. Solo dopo decidi qual e la migliore espressione: `spot accumulate`, `spot hold`, `swing long`, `swing short` oppure `no trade`.
+2. Se i chart non sono gia forniti, fai source discovery e recupera prima timeframe alti, medi e bassi da fonti affidabili.
+3. Leggi poi i timeframe alti.
+4. Verifica allineamento o conflitto sui timeframe medi.
+5. Solo alla fine valuta il timing su timeframe bassi, se serve.
+6. Poi integra positioning, funding, OI, liquidita e squeeze risk.
+7. Solo dopo decidi qual e la migliore espressione: `spot accumulate`, `spot hold`, `swing long`, `swing short` oppure `no trade`.
 
 STRUTTURA OBBLIGATORIA
 
