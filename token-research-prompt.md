@@ -16,6 +16,12 @@ Ogni sezione deve distinguere chiaramente tra:
 - fatti verificabili
 - inferenze ragionevoli
 - speculazioni
+Apri sempre con un mini research status di massimo 5 righe che indichi:
+- qualità delle fonti: alta / media / bassa
+- copertura dati: completa / parziale / insufficiente
+- principali buchi informativi
+- rischio principale di errore analitico
+- confidenza preliminare: alta / media / bassa
 
 ## CONTROLLI OBBLIGATORI TRASVERSALI
 
@@ -131,6 +137,10 @@ Apri con un riassunto immediato in massimo 8 righe:
 - Quale problema risolve davvero.
 - Chi lo usa davvero o dovrebbe usarlo.
 - Perché esiste onchain invece che offchain.
+- Perché deve esistere in forma crypto/tokenizzata invece che come prodotto centralizzato, API tradizionale o open source non tokenizzato.
+- Quale vantaggio concreto ottiene l’utente finale dalla forma onchain/tokenizzata, al netto della narrativa.
+- Se togli il token, il prodotto peggiora davvero oppure resta quasi identico.
+- Se il progetto sparisse domani, quale bisogno reale resterebbe scoperto.
 - Dove sta il vero motore economico del business.
 - Quale parte della narrativa è sostanza e quale è packaging.
 
@@ -237,6 +247,7 @@ Dividi tra:
 
 Per ciascuno confronta:
 - prodotto
+- alternative non-crypto / centralizzate / open source
 - distribuzione
 - liquidità
 - brand
@@ -255,6 +266,7 @@ Distingui tra:
 Domande chiave:
 - perché questo protocollo dovrebbe vincere?
 - perché potrebbe perdere anche se il settore cresce?
+- il vantaggio rispetto ad alternative non-crypto è reale, misurabile e difendibile oppure soprattutto narrativo?
 - il mercato gli riconosce già un premio?
 - c’è spazio per rerating o è già prezzato come winner?
 
@@ -268,7 +280,7 @@ Domande chiave:
 - È un business robusto o fragile travestito da protocollo?
 
 10. Market structure del token
-Analizza il setup di mercato del token:
+Analizza il setup di mercato del token solo se hai dati sufficienti e verificabili:
 - liquidità spot reale
 - profondità del book
 - qualità delle venue
@@ -292,6 +304,7 @@ Domande chiave:
 - c’è rischio di dump strutturale?
 - il mercato è abbastanza profondo da assorbire distribuzione insider?
 - i buyback hanno impatto materiale sul float o sono troppo piccoli rispetto alla liquidità e alla nuova offerta?
+Se i dati non bastano, non simulare precisione: dichiara i limiti informativi e riduci la confidenza.
 
 11. Holder base e allineamento
 - Chi possiede il token: team, fondi, foundation, community, users, whales, partner strategici, mercenari.
@@ -428,7 +441,7 @@ Chiudi sempre con:
 - business quality: alta / media / bassa
 - token quality: alta / media / bassa
 - market setup: favorevole / neutro / fragile
-- verdict: sottovalutato / fairly priced / sopravvalutato
+- verdict: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente
 - confidenza del giudizio: bassa / media / alta
 - orizzonte temporale implicito: breve / medio / lungo
 - motivo principale del giudizio in massimo 3 frasi
@@ -444,6 +457,8 @@ Chiudi sempre con:
 - Distingui sempre tra business quality, token quality e setup di mercato.
 - Distingui chiaramente fatti, inferenze e speculazioni.
 - Quando citi un numero importante, indica sempre data/snapshot e periodo di riferimento.
+- Non compilare sezioni per cui non hai evidenza sufficiente.
+- Se un dato chiave manca, dillo esplicitamente, spiega perché conta e abbassa la confidenza.
 - Se i numeri non bastano, dillo.
 - Se manca trasparenza su supply, unlock o treasury, consideralo un rischio.
 - Ragiona prima sul business, poi sul token, poi sul prezzo.
@@ -454,11 +469,15 @@ Chiudi sempre con:
 - Se gli unlock sono un problema, dillo chiaramente.
 - Se la market structure è fragile, dillo chiaramente.
 - Meglio un “non lo so” onesto che una conclusione finta.
+- Meglio saltare o comprimere una sezione che riempirla con supposizioni deboli.
 - Non confondere mai fees, protocol revenue, holders revenue, buyback budget, burn, treasury custody e riduzione del float.
 - Se non puoi dimostrare il meccanismo, non usare parole come “deflattivo”, “supply shock”, “mangiano l’offerta” o equivalenti.
 - Se una metrica diverge da un’altra, verifica prima definizioni e perimetro, poi concludi.
 - Non confrontare market cap, FDV e multipli attuali con metriche economiche di periodi incompatibili senza normalizzazione o nota esplicita.
 - Per ogni claim forte, chiarisci sempre cosa è dimostrato, cosa è solo suggerito e cosa resta non dimostrato.
+- Se mancano fonti primarie o dati sufficienti per una conclusione seria, dichiara il token non analizzabile con rigore sufficiente.
+- Questo prompt produce un giudizio di ricerca e fair value strutturale, non un setup operativo di trading multi-timeframe.
+
 
 ## STILE DI RISPOSTA
 - Scrivi come se stessi decidendo se allocare capitale tuo.
