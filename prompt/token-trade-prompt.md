@@ -13,7 +13,7 @@ capire quale sia la migliore espressione operativa adesso, distinguendo chiarame
 - eseguibilita reale
 
 Prerequisito consigliato:
-assumi come input primario l output di `token-research-prompt.md`, se disponibile.
+assumi come input primario l output di `prompt/token-research-prompt.md`, se disponibile.
 Questo prompt deve partire da quelle conclusioni e trasformarle in una market expression sensata.
 Non deve rifare da zero:
 - business quality
@@ -23,6 +23,11 @@ Non deve rifare da zero:
 - unlock analysis
 - right-to-exist test
 Se il report fondamentale non e disponibile, dillo subito e abbassa la confidenza soprattutto sulle conclusioni spot / positional.
+Se esiste anche il report di verifica, trattalo come contesto prevalente per:
+- correzioni materiali del report fondamentale
+- eventi recenti
+- dispute di governance
+- exploit, halt, delisting risk, partner loss o altri thesis-change events
 
 Principio guida:
 non confondere mai:
@@ -44,7 +49,7 @@ Un token debole puo essere:
 `No trade` e una conclusione valida.
 
 Input ideali:
-- output o sintesi del `token-research-prompt.md`, con almeno:
+- output o sintesi del `prompt/token-research-prompt.md`, con almeno:
   - business quality
   - token quality
   - market setup strutturale
@@ -56,6 +61,33 @@ Input ideali:
 - screenshot o chart su timeframe bassi: 1H / 15m, se servono al timing
 - dati su volume, open interest, funding, basis, liquidazioni, borrow, spread, depth, se disponibili
 - il report fondamentale non sostituisce il setup tecnico, ma deve fare da contesto ereditato
+
+EVENT E REGIME DISCOVERY OBBLIGATORIA
+
+Prima di leggere il chart come se nulla fosse, verifica sempre cosa e successo negli ultimi `7d`, `30d` e `90d`, se rilevanti.
+
+Controlla almeno:
+- governance dispute / founder conflict / key person exit
+- exploit / halt / outage / oracle failure / security incident
+- listing / delisting / perdita di partner chiave / cambio market maker
+- unlock, emission changes, treasury actions, fee switch o buyback changes
+- launch prodotto o announcement che ha spostato davvero prezzo e positioning
+- indagini, cause, enforcement o warning regolatori
+
+Per ogni evento materiale indica sempre:
+- data esatta
+- fonte primaria o migliore fonte disponibile
+- stato: confermato / contestato / smentito / in evoluzione
+- cosa e successo davvero
+- cosa e solo allegation o narrativa
+- market reaction osservata: prezzo, volume, OI, funding, liquidazioni, se disponibili
+- se il move attuale appare:
+  - continuation tecnica
+  - repricing da evento
+  - overshoot da panico/euforia
+  - regime change potenziale
+
+Se non trovi eventi materiali, scrivilo esplicitamente in una riga.
 
 SOURCE DISCOVERY OBBLIGATORIA
 
@@ -91,6 +123,12 @@ REGOLE DI RIGORE
 - Se i chart sono incompleti, vecchi o poco leggibili, dillo chiaramente.
 - Non e ammissibile fermarsi a proxy aggregati se esistono chart o API ragionevolmente accessibili con OHLC reali multi-timeframe.
 - Se mancano dati su OI, funding, borrow, liquidita o liquidazioni, non fingere precisione.
+- Non trattare un dump o squeeze da governance shock, exploit o delisting fear come semplice `healthy pullback` o `breakout` senza verificare prima l evento.
+- Distingui sempre tra:
+  - movimento tecnico ordinario
+  - reazione a evento confermato
+  - reazione a allegation / rumor
+  - structural break ancora aperto
 - Distingui sempre tra osservazioni visibili sui grafici, inferenze operative e scenari condizionali.
 - Distingui sempre tra:
   - tesi strutturale ereditata dal prompt fondamentale
@@ -104,17 +142,20 @@ REGOLE DI RIGORE
 - Non confondere un buon chart con un buon risk/reward.
 - Non confondere un buon risk/reward con una buona eseguibilita.
 - Non usare linguaggio assoluto tipo `partira sicuramente`, `reversal confermato`, `short ovvio` o `breakout pulito` se il dato non lo supporta chiaramente.
+- Se un evento materiale e ancora aperto e impedisce di capire se il move sia tecnico o strutturale, `no trade` resta un output preferibile a una view inventata.
 - Se il setup non e abbastanza chiaro, concludi `no trade`.
 
 ORDINE DI LAVORO OBBLIGATORIO
 
 1. Leggi prima il report fondamentale, se disponibile, ed estrai la tesi strutturale ereditata.
-2. Se i chart non sono gia forniti, fai source discovery e recupera prima timeframe alti, medi e bassi da fonti affidabili.
-3. Leggi poi i timeframe alti.
-4. Verifica allineamento o conflitto sui timeframe medi.
-5. Solo alla fine valuta il timing su timeframe bassi, se serve.
-6. Poi integra positioning, funding, OI, liquidita e squeeze risk.
-7. Solo dopo decidi qual e la migliore espressione: `spot accumulate`, `spot hold`, `swing long`, `swing short` oppure `no trade`.
+2. Leggi il report di verifica, se disponibile, e preferiscilo in caso di conflitto.
+3. Verifica gli eventi recenti e stabilisci se il mercato sta reagendo a un `event shock` ancora aperto.
+4. Se i chart non sono gia forniti, fai source discovery e recupera prima timeframe alti, medi e bassi da fonti affidabili.
+5. Leggi poi i timeframe alti.
+6. Verifica allineamento o conflitto sui timeframe medi.
+7. Solo alla fine valuta il timing su timeframe bassi, se serve.
+8. Poi integra positioning, funding, OI, liquidita e squeeze risk.
+9. Solo dopo decidi qual e la migliore espressione: `spot accumulate`, `spot hold`, `swing long`, `swing short` oppure `no trade`.
 
 STRUTTURA OBBLIGATORIA
 
@@ -123,11 +164,32 @@ STRUTTURA OBBLIGATORIA
 - copertura dati: completa / parziale / insufficiente
 - timeframe disponibili
 - report fondamentale disponibile: si / no
+- report di verifica disponibile: si / no
 - qualita del contesto ereditato: alta / media / bassa
 - principali buchi informativi
 - confidenza preliminare: alta / media / bassa
 
-1. Executive view
+1. Recent event e regime shock audit
+Compila sempre questa sezione, anche se la risposta e `nessun evento materiale`.
+
+Per gli ultimi `7d`, `30d` e `90d`, se rilevanti:
+- evento
+- data
+- fonte
+- stato: confermato / contestato / smentito / in evoluzione
+- cosa e confermato
+- cosa resta allegation o non chiuso
+- market reaction osservata
+- impatto su business / token / market structure / fiducia
+- l evento e chiuso o ancora aperto?
+- il setup corrente sembra tecnico o event-driven?
+
+Chiudi con un mini verdict:
+- nessun evento materiale / evento materiale ma transitorio / evento materiale ancora aperto / structural break possibile
+- impatto principale: business / token / market structure / fiducia / narrativa
+- stato: chiuso / in evoluzione / non risolto
+
+2. Executive view
 Massimo 8 righe:
 - tesi fondamentale ereditata in 1-2 righe
 - coerenza o divergenza rispetto al setup attuale
@@ -138,7 +200,7 @@ Massimo 8 righe:
 - rischio principale contro la view
 - grado di eseguibilita
 
-2. Higher timeframe context
+3. Higher timeframe context
 Analizza 1W e 1D, se disponibili:
 - trend primario
 - struttura: HH/HL o LH/LL
@@ -147,7 +209,7 @@ Analizza 1W e 1D, se disponibili:
 - premium o discount rispetto al range HTF
 - dove il chart invalida la tesi HTF
 
-3. Mid timeframe structure
+4. Mid timeframe structure
 Analizza 4H:
 - struttura intermedia
 - momentum
@@ -156,7 +218,7 @@ Analizza 4H:
 - conflitto o allineamento con HTF
 - dove si invalida la tesi su timeframe medio
 
-4. Lower timeframe timing
+5. Lower timeframe timing
 Analizza 1H e 15m solo per timing, non per costruire da zero la tesi:
 - trigger di entrata possibili
 - conferme richieste
@@ -164,7 +226,7 @@ Analizza 1H e 15m solo per timing, non per costruire da zero la tesi:
 - rischio di fake breakout / fake breakdown
 - timing migliore: subito / su pullback / su reclaim / su breakdown / aspettare
 
-5. Derivatives e positioning
+6. Derivatives e positioning
 Analizza, se disponibili:
 - open interest
 - funding
@@ -178,7 +240,7 @@ Domande chiave:
 - c e rischio di squeeze o flush violento?
 - il carry aiuta o penalizza la view?
 
-6. Liquidity e execution quality
+7. Liquidity e execution quality
 Analizza:
 - liquidita spot reale
 - profondita del book
@@ -192,7 +254,7 @@ Domande chiave:
 - una size sensata puo entrare e uscire senza troppo attrito?
 - il mercato e abbastanza profondo per sostenere la tesi?
 
-7. Spot / positional case
+8. Spot / positional case
 Compila solo se ha davvero senso:
 - espressione spot: accumulate now / accumulate on pullbacks / hold if already in / avoid
 - timeframe dominante: weekly / daily / positional multi-week
@@ -202,7 +264,7 @@ Compila solo se ha davvero senso:
 - cosa migliorerebbe la tesi
 - cosa la peggiorerebbe
 
-8. Swing long case
+9. Swing long case
 Compila solo se esiste davvero:
 - trigger long
 - livello o zona di entrata
@@ -211,7 +273,7 @@ Compila solo se esiste davvero:
 - timeframe dominante
 - condizione che trasformerebbe il long in no trade
 
-9. Swing short case
+10. Swing short case
 Compila solo se esiste davvero:
 - trigger short
 - livello o zona di entrata
@@ -220,17 +282,19 @@ Compila solo se esiste davvero:
 - timeframe dominante
 - condizione che trasformerebbe lo short in no trade
 
-10. No-trade test
+11. No-trade test
 Rispondi in modo secco:
 - il setup e troppo sporco?
 - il risk/reward e insufficiente?
 - la liquidita o il positioning peggiorano troppo l esecuzione?
 - la view e piu teorica che praticabile?
+- un evento ancora aperto rende il prezzo non affidabile come base operativa?
 - aspettare darebbe un setup migliore?
 
-11. Decisione finale
+12. Decisione finale
 Chiudi sempre con:
 - verdict fondamentale ereditato: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente / non disponibile
+- stato evento/regime: pulito / rumor-driven / event-driven / structural-break risk
 - bias HTF: bullish / bearish / neutral
 - bias operativo: bullish / bearish / neutral
 - migliore espressione: spot accumulate / spot hold / swing long / swing short / no trade

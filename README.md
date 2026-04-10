@@ -6,8 +6,26 @@ Repository di prompt per fare:
 - valutazione operativa separata tra spot / positional / swing / no trade
 
 File principali:
-- [token-research-prompt.md]
-- [token-trade-prompt.md]
+- [prompt/token-research-prompt.md](prompt/token-research-prompt.md)
+- [prompt/token-trade-prompt.md](prompt/token-trade-prompt.md)
+- [workflow/README.md](workflow/README.md)
+- [workflow/01-token-research.md](workflow/01-token-research.md)
+- [workflow/02-token-research-verification.md](workflow/02-token-research-verification.md)
+- [workflow/03-token-trade.md](workflow/03-token-trade.md)
+
+## Struttura Del Repo
+
+Il repo ora e diviso in due livelli:
+- prompt base nella cartella `prompt/`:
+  - `prompt/token-research-prompt.md`
+  - `prompt/token-trade-prompt.md`
+- workflow pronti all uso:
+  - `workflow/01-token-research.md`
+  - `workflow/02-token-research-verification.md`
+  - `workflow/03-token-trade.md`
+
+I prompt base definiscono la metodologia.
+I workflow sono gli entrypoint consigliati quando vuoi eseguire il processo in modo ripetibile su un token specifico.
 
 ## Scopo
 
@@ -87,7 +105,7 @@ Non va usato come:
 
 ## Limiti Specifici Dei Prompt
 
-### `token-research-prompt.md`
+### `prompt/token-research-prompt.md`
 
 Questo prompt serve per:
 - business quality
@@ -102,7 +120,7 @@ Non serve per:
 - lettura fine dei grafici
 - gestione tattica del rischio intraday
 
-### `token-trade-prompt.md`
+### `prompt/token-trade-prompt.md`
 
 Questo prompt serve per:
 - lettura multi-timeframe
@@ -135,10 +153,37 @@ Se usi il prompt trade:
 ## Modalita Consigliata
 
 Workflow suggerito:
-1. usa [token-research-prompt.md] per capire se il progetto e il token meritano attenzione
-2. verifica manualmente le assunzioni critiche
-3. solo dopo usa [token-trade-prompt.md] per capire se esiste una buona espressione operativa
-4. se i dati sono incompleti, preferisci `confidenza bassa` o `no trade`
+1. usa [workflow/01-token-research.md](workflow/01-token-research.md) per creare il report fondamentale completo su un token
+2. usa [workflow/02-token-research-verification.md](workflow/02-token-research-verification.md) per verificare il report con fonti primarie, metriche live e audit degli eventi recenti
+3. solo dopo usa [workflow/03-token-trade.md](workflow/03-token-trade.md) per derivare la migliore espressione operativa
+4. se i dati sono incompleti o un evento materiale e ancora aperto, preferisci `confidenza bassa` o `no trade`
+
+Se vuoi lavorare direttamente sui prompt metodologici, puoi ancora usare:
+- [prompt/token-research-prompt.md](prompt/token-research-prompt.md)
+- [prompt/token-trade-prompt.md](prompt/token-trade-prompt.md)
+
+Ma la modalita consigliata e usare i file nella cartella `workflow`.
+
+## Guida Rapida D Uso
+
+Sequenza consigliata per un token `[PROTOCOLLO] / [TICKER]`:
+1. esegui `workflow/01-token-research.md`
+2. ottieni una cartella output nel formato:
+   - `[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
+3. esegui `workflow/02-token-research-verification.md` sulla stessa cartella
+4. esegui `workflow/03-token-trade.md` usando il report fondamentale e, se presente, il report di verifica
+
+Convenzione output:
+- cartella: `[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
+- fondamentale: `token-research-[slug-progetto]-[ticker-lower]-test.md`
+- verifica: `token-research-[slug-progetto]-[ticker-lower]-verification.md`
+- trade: `token-trade-[slug-progetto]-[ticker-lower]-test.md`
+
+Esempio:
+- cartella: `bittensor-tao-2026-04-10-test`
+- fondamentale: `bittensor-tao-2026-04-10-test/token-research-bittensor-tao-test.md`
+- verifica: `bittensor-tao-2026-04-10-test/token-research-bittensor-tao-verification.md`
+- trade: `bittensor-tao-2026-04-10-test/token-trade-bittensor-tao-test.md`
 
 ## Su Dati E Fonti
 

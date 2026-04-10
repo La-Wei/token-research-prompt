@@ -122,11 +122,69 @@ Prima del verdetto finale rispondi esplicitamente a queste 5 domande:
 - I token riacquistati spariscono davvero o possono tornare sul mercato?
 - Il bull case dipende da business growth, da buyback mechanics, o da semplice narrativa di scarsità?
 
+11. Necessity of existence test
+Per ogni token esegui sempre un test esplicito di necessità di esistenza del progetto, non solo del token.
+Confronta il protocollo almeno contro queste alternative, se rilevanti:
+- prodotto centralizzato / API tradizionale
+- open source non tokenizzato
+- soluzione locale / self-hosted / offchain
+- workflow manuale o non-crypto
+
+Per ciascun confronto chiarisci:
+- quale problema reale risolve meglio
+- per chi lo risolve meglio: utente finale / operatore / sviluppatore / capital provider / speculatore
+- se il vantaggio è di prodotto, di distribuzione, di coordinamento, di capitale, di composability, di censorship resistance o solo di narrativa
+- se il vantaggio è misurabile oggi oppure solo potenziale
+
+Se il vantaggio concreto esiste soprattutto per operatori, insiders, staker o token holder e non per l’utente finale, dillo esplicitamente.
+Se il progetto sembra soprattutto un mercato tokenizzato o un coordination layer e non un prodotto strutturalmente superiore, dillo esplicitamente.
+Se non riesci a dimostrare un vantaggio concreto contro alternative realistiche, abbassa la business quality anche se il tokenomics design è interessante.
+
+12. Recent event audit
+Prima del verdetto finale verifica sempre cosa e successo negli ultimi `7d`, `30d` e `90d`.
+Controlla almeno, se rilevanti:
+- dispute di governance / founder conflict / key person exit
+- exploit / halt / outage / oracle failure / depeg / security incident
+- unlock, emission changes, treasury actions, fee switch changes, buyback changes
+- listing, delisting, perdita di partner chiave, cambio market maker
+- launch prodotto, migration, chain upgrade, parameter change, proposal di governance materiale
+- indagini, cause, enforcement, ban, warning regolatori
+
+Per ogni evento materiale indica sempre:
+- data esatta
+- fonte primaria o migliore fonte disponibile
+- stato: confermato / contestato / smentito / in evoluzione
+- cosa e successo davvero
+- cosa e solo allegation o narrativa
+- market reaction osservata: prezzo, volume, OI, funding, liquidazioni, se disponibili
+- se l impatto colpisce: business / token / market structure / fiducia / sola narrativa
+- se l evento e chiuso, aperto o ancora non risolto
+
+Se non trovi eventi materiali, scrivilo esplicitamente in una riga.
+
+13. Narrative break e trust shock test
+Se c e un evento recente che tocca `decentralizzazione`, `governance`, `solvibilità`, `trasparenza`, `sicurezza`, `controllo founder`, `dipendenza da un singolo subnet/partner/exchange`, non archiviarlo come semplice rumore.
+Classificalo sempre come uno dei seguenti:
+- rumore / drama di breve
+- problema di optics o comunicazione
+- rischio reale di governance / key-person / centralizzazione
+- rischio reale di controparte / partner concentration / subnet concentration
+- thesis-changing structural break
+
+Per controversie live usa questa gerarchia:
+- statement ufficiale / governance / filing / docs / onchain
+- dashboard metodologiche
+- reporting giornalistico serio
+- social, Discord, thread e post come lead da verificare, non come prova finale
+
+Se l evento e materialmente rilevante, puo sovrascrivere la lettura precedente di `market setup`, `token quality` o `verdict finale`.
+
 ## STRUTTURA OBBLIGATORIA
 
 1. TL;DR iniziale
 Apri con un riassunto immediato in massimo 8 righe:
 - cos’è il protocollo
+- perché deve esistere davvero oppure perché questo punto è debole
 - perché il mercato potrebbe averlo prezzato male
 - cosa rende interessante il token
 - cosa preoccupa di più
@@ -141,8 +199,18 @@ Apri con un riassunto immediato in massimo 8 righe:
 - Quale vantaggio concreto ottiene l’utente finale dalla forma onchain/tokenizzata, al netto della narrativa.
 - Se togli il token, il prodotto peggiora davvero oppure resta quasi identico.
 - Se il progetto sparisse domani, quale bisogno reale resterebbe scoperto.
+- Confrontalo esplicitamente con la migliore alternativa centralizzata, con la migliore alternativa open source non tokenizzata e con la migliore alternativa locale/self-hosted, se rilevanti.
+- Se il vantaggio concreto è soprattutto per gli operatori del network e non per l’utente finale, dichiaralo senza attenuarlo.
+- Distingui esplicitamente tra `vantaggio di prodotto` e `vantaggio di mercato/coordinamento/capitale`.
 - Dove sta il vero motore economico del business.
 - Quale parte della narrativa è sostanza e quale è packaging.
+
+Chiudi sempre la sezione con un mini verdict atomico di massimo 6 righe:
+- necessità di esistenza del prodotto: alta / media / bassa / non dimostrata
+- vantaggio vs soluzione centralizzata/API: forte / medio / debole / nullo
+- vantaggio vs open source non tokenizzato o locale: forte / medio / debole / nullo
+- necessità del token per il prodotto: alta / media / bassa / quasi nulla
+- il progetto è soprattutto: prodotto superiore / coordination layer / mercato tokenizzato / packaging narrativo
 
 3. Business quality: qualità reale del protocollo
 Analizza:
@@ -166,6 +234,8 @@ Domande chiave:
 - TVL e usage stanno generando vero valore economico o solo apparenza?
 - TVL, AUM, deposits e revenue stanno misurando lo stesso perimetro o porzioni diverse del business?
 - l’eventuale mismatch riflette definizioni/reporting diversi o un problema reale del business?
+- la domanda viene da utenti finali paganti o soprattutto da operatori / investitori / speculatori interni al sistema?
+- il protocollo monetizza uso reale del prodotto o monetizza soprattutto la partecipazione al sistema?
 
 4. Unit economics e qualità dei ricavi
 - Da dove arrivano i ricavi.
@@ -177,6 +247,7 @@ Domande chiave:
 - I rendimenti o incentivi derivano da attività economica reale o da sussidi?
 - La top-line economica del protocollo arriva davvero ai token holder o si ferma prima?
 - La revenue trattenuta dal protocollo è stabile o dipende da condizioni temporanee?
+- Il sistema monetizza soprattutto il prodotto finale oppure la partecipazione al network?
 
 5. Token: come cattura valore davvero
 Analizza in dettaglio:
@@ -267,6 +338,7 @@ Domande chiave:
 - perché questo protocollo dovrebbe vincere?
 - perché potrebbe perdere anche se il settore cresce?
 - il vantaggio rispetto ad alternative non-crypto è reale, misurabile e difendibile oppure soprattutto narrativo?
+- se la migliore alternativa per l’utente finale non è crypto, quale è e perché?
 - il mercato gli riconosce già un premio?
 - c’è spazio per rerating o è già prezzato come winner?
 
@@ -313,7 +385,41 @@ Se i dati non bastano, non simulare precisione: dichiara i limiti informativi e 
 - Esiste una base di holder forte o solo floating speculativo.
 - I maggiori holder sono asset strategici o futuri seller.
 
-12. Catalizzatori
+12. Sviluppi recenti e thesis-change events
+Analizza in modo obbligatorio gli ultimi `7d`, `30d` e `90d`.
+Non limitarti a un recap news.
+
+Controlla almeno, se rilevanti:
+- shock di prezzo o volume
+- governance dispute
+- founder / team departures
+- emission or tokenomics changes
+- exploit / hack / halt / outage
+- delisting / listing
+- perdita o ingresso di partner chiave
+- launch di prodotto o subnet che cambiano la tesi
+- azioni regolatorie o legali
+
+Per ogni evento materiale indica:
+- data
+- evento
+- fonte
+- cosa e confermato
+- cosa resta allegation o non dimostrato
+- market reaction osservata
+- impatto su business / token / market structure / fiducia
+- quanto sembra gia prezzato: poco / parzialmente / molto / non valutabile
+- orizzonte dell impatto: giorni / settimane / trimestri
+- se cambia o no la tesi
+
+Chiudi sempre la sezione con un mini verdict:
+- nessun evento materiale / evento materiale ma transitorio / evento materiale e ancora aperto / structural break possibile
+- impatto principale: business / token / market structure / fiducia / narrativa
+- stato: chiuso / in evoluzione / non risolto
+- grado di pricing percepito: poco / parzialmente / molto / non valutabile
+- orizzonte dominante: giorni / settimane / trimestri
+
+13. Catalizzatori
 Dividi i catalizzatori in:
 - già noti
 - probabili
@@ -338,7 +444,7 @@ Per ogni catalizzatore indica:
 - timing
 - se è già prezzato oppure no
 
-13. Bull case
+14. Bull case
 Costruisci tre scenari:
 - bull case realistico
 - bull case forte
@@ -352,7 +458,7 @@ Per ciascuno indica:
 - quale parte del rialzo deriverebbe da crescita del business
 - quale parte del rialzo deriverebbe da multiple expansion o narrativa
 
-14. Bear case
+15. Bear case
 Analizza in modo spietato:
 - cosa rompe la tesi
 - execution risk
@@ -371,7 +477,7 @@ Domande chiave:
 - cosa può distruggere il prezzo senza distruggere il prodotto?
 - quali eventi cambiano completamente il profilo rischio/rendimento?
 
-15. Valuation thinking
+16. Valuation thinking
 Analizza:
 - market cap attuale
 - FDV
@@ -391,7 +497,7 @@ Domande chiave:
 - il multiplo è giustificato dalla qualità dei ricavi?
 - il token è cheap su base relativa, assoluta, o nessuna delle due?
 
-16. Price map e scenario map
+17. Price map e scenario map
 Calcola cosa significherebbe:
 - ritorno all’ATH
 - ritorno a market cap / FDV coerenti con competitor comparabili
@@ -406,15 +512,16 @@ Per ogni scenario specifica:
 - assunzioni implicite
 - probabilità qualitativa
 
-17. Mispricing test
+18. Mispricing test
 Rispondi in modo secco:
 - cosa sta sottovalutando il mercato?
 - cosa sta sopravvalutando il mercato?
 - qual è la variabile più importante che quasi tutti stanno ignorando?
 - dove sta il vero edge dell’analisi?
 - cosa sto rischiando di capire male io come analista?
+- qual è il vantaggio concreto che regge la tesi anche fuori dalla narrativa crypto, se esiste?
 
-18. Source reconciliation
+19. Source reconciliation
 Compila questa sezione solo se emergono divergenze rilevanti tra fonti.
 Per ciascuna divergenza rilevante indica:
 - metrica o dato
@@ -428,7 +535,7 @@ Se il protocollo usa AUM e una dashboard usa TVL, chiarisci solo se serve:
 - quale metrica è più utile per giudicare business scale
 - quale metrica è più utile per giudicare composability/onchain footprint
 
-19. Checklist finale di investimento
+20. Checklist finale di investimento
 Concludi con:
 - 3 motivi forti per essere bullish
 - 3 motivi forti per essere cauti
@@ -436,9 +543,10 @@ Concludi con:
 - 3 segnali che invaliderebbero la tesi
 - 3 metriche da monitorare nei prossimi 90 giorni
 
-20. Conclusione netta
+21. Conclusione netta
 Chiudi sempre con:
 - business quality: alta / media / bassa
+- necessità di esistenza del prodotto: alta / media / bassa / non dimostrata
 - token quality: alta / media / bassa
 - market setup: favorevole / neutro / fragile
 - verdict: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente
@@ -454,6 +562,7 @@ Chiudi sempre con:
 - Non dare per scontato che revenue = value accrual del token.
 - Non dare per scontato che protocol growth = token upside.
 - Non dare per scontato che narrativa = moat.
+- Non dare per scontato che un coordination layer crypto sia automaticamente un prodotto migliore per l’utente finale.
 - Distingui sempre tra business quality, token quality e setup di mercato.
 - Distingui chiaramente fatti, inferenze e speculazioni.
 - Quando citi un numero importante, indica sempre data/snapshot e periodo di riferimento.
@@ -464,6 +573,8 @@ Chiudi sempre con:
 - Ragiona prima sul business, poi sul token, poi sul prezzo.
 - Cerca di distruggere la tesi prima di confermarla.
 - Evita bias da narrativa, bull market, brand e community.
+- Se non dimostri un vantaggio concreto contro alternative centralizzate, locali o open source, non trattare il progetto come business quality alta per default.
+- Non confondere domanda interna al sistema, staking demand, incentive farming o speculation flow con vera domanda finale per il prodotto.
 - Sii severo con i token che hanno unlock pesanti, utility vaga o value accrual indiretto.
 - Se il token non ha value accrual reale, dillo chiaramente.
 - Se gli unlock sono un problema, dillo chiaramente.
@@ -476,6 +587,10 @@ Chiudi sempre con:
 - Non confrontare market cap, FDV e multipli attuali con metriche economiche di periodi incompatibili senza normalizzazione o nota esplicita.
 - Per ogni claim forte, chiarisci sempre cosa è dimostrato, cosa è solo suggerito e cosa resta non dimostrato.
 - Se mancano fonti primarie o dati sufficienti per una conclusione seria, dichiara il token non analizzabile con rigore sufficiente.
+- Se esistono eventi materiali negli ultimi `30d`, dedica sempre loro una sezione separata e non nasconderli dentro `catalizzatori` o `bear case`.
+- Per eventi recenti usa sempre date assolute, non solo `oggi`, `ieri`, `pochi giorni fa`.
+- Distingui sempre tra `evento confermato`, `allegation`, `risposta del team`, `impatto di mercato osservato`.
+- Un governance shock, exploit, halt, delisting, key-person exit o rottura con un partner chiave può peggiorare il `market setup` anche se il business di lungo periodo non è ancora rotto.
 - Questo prompt produce un giudizio di ricerca e fair value strutturale, non un setup operativo di trading multi-timeframe.
 
 
