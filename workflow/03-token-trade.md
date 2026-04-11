@@ -3,8 +3,8 @@
 Esegui `prompt/token-trade-prompt.md` per `[PROTOCOLLO] / [TICKER]`.
 
 Input primario obbligatorio:
-- report fondamentale: `[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
-- report di verifica: `[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-verification.md`, se disponibile
+- report fondamentale: `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
+- report di verifica: `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-verification.md`, se disponibile
 - prompt trade di riferimento: `prompt/token-trade-prompt.md`
 
 Obiettivo operativo:
@@ -17,7 +17,7 @@ Obiettivo operativo:
   - price action tecnica ordinaria
   - repricing da evento recente
   - dislocazione ancora aperta e non risolta
-- crea `[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-trade-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
+- crea `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-trade-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
 - segui rigorosamente la struttura obbligatoria di `prompt/token-trade-prompt.md`
 - non limitarti a un riassunto in chat
 - al termine rispondi solo con il path finale del file creato

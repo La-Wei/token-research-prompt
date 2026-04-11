@@ -3,11 +3,11 @@
 Esegui la verifica del report fondamentale per `[PROTOCOLLO] / [TICKER]`.
 
 Input obbligatorio:
-- report da verificare: `[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
+- report da verificare: `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
 - prompt base di riferimento: `prompt/token-research-prompt.md`
 
 Obiettivo operativo:
-- crea `[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-verification.md`
+- crea `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-verification.md`
 - usa fonti primarie, docs ufficiali e dashboard metodologicamente chiare
 - verifica claim strutturali, waterfall, supply, unlock, treasury, metriche live, eventi recenti e verdetto finale
 - verifica sempre gli ultimi `7d`, `30d` e `90d`, se rilevanti, per:

@@ -8,7 +8,7 @@ File disponibili:
 3. [`03-token-trade.md`](03-token-trade.md)
 
 Convenzione output:
-- cartella: `[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
+- cartella: `output/[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
 - fondamentale: `token-research-[slug-progetto]-[ticker-lower]-test.md`
 - verifica: `token-research-[slug-progetto]-[ticker-lower]-verification.md`
 - trade: `token-trade-[slug-progetto]-[ticker-lower]-test.md`
@@ -50,7 +50,7 @@ Per un token `[PROTOCOLLO] / [TICKER]`:
 3. mantieni tutti i file dello stesso token nella stessa cartella output
 
 Esempio:
-- cartella: `bittensor-tao-2026-04-10-test`
+- cartella: `output/bittensor-tao-2026-04-10-test`
 - fondamentale: `token-research-bittensor-tao-test.md`
 - verifica: `token-research-bittensor-tao-verification.md`
 - trade: `token-trade-bittensor-tao-test.md`

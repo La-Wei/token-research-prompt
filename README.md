@@ -15,7 +15,7 @@ File principali:
 
 ## Struttura Del Repo
 
-Il repo ora e diviso in due livelli:
+Il repo ora e diviso in tre livelli:
 - prompt base nella cartella `prompt/`:
   - `prompt/token-research-prompt.md`
   - `prompt/token-trade-prompt.md`
@@ -23,6 +23,8 @@ Il repo ora e diviso in due livelli:
   - `workflow/01-token-research.md`
   - `workflow/02-token-research-verification.md`
   - `workflow/03-token-trade.md`
+- output generati nella cartella `output/`:
+  - `output/[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
 
 I prompt base definiscono la metodologia.
 I workflow sono gli entrypoint consigliati quando vuoi eseguire il processo in modo ripetibile su un token specifico.
@@ -169,21 +171,21 @@ Ma la modalita consigliata e usare i file nella cartella `workflow`.
 Sequenza consigliata per un token `[PROTOCOLLO] / [TICKER]`:
 1. esegui `workflow/01-token-research.md`
 2. ottieni una cartella output nel formato:
-   - `[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
+   - `output/[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
 3. esegui `workflow/02-token-research-verification.md` sulla stessa cartella
 4. esegui `workflow/03-token-trade.md` usando il report fondamentale e, se presente, il report di verifica
 
 Convenzione output:
-- cartella: `[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
+- cartella: `output/[slug-progetto]-[ticker-lower]-[YYYY-MM-DD]-test`
 - fondamentale: `token-research-[slug-progetto]-[ticker-lower]-test.md`
 - verifica: `token-research-[slug-progetto]-[ticker-lower]-verification.md`
 - trade: `token-trade-[slug-progetto]-[ticker-lower]-test.md`
 
 Esempio:
-- cartella: `bittensor-tao-2026-04-10-test`
-- fondamentale: `bittensor-tao-2026-04-10-test/token-research-bittensor-tao-test.md`
-- verifica: `bittensor-tao-2026-04-10-test/token-research-bittensor-tao-verification.md`
-- trade: `bittensor-tao-2026-04-10-test/token-trade-bittensor-tao-test.md`
+- cartella: `output/bittensor-tao-2026-04-10-test`
+- fondamentale: `output/bittensor-tao-2026-04-10-test/token-research-bittensor-tao-test.md`
+- verifica: `output/bittensor-tao-2026-04-10-test/token-research-bittensor-tao-verification.md`
+- trade: `output/bittensor-tao-2026-04-10-test/token-trade-bittensor-tao-test.md`
 
 ## Su Dati E Fonti
 

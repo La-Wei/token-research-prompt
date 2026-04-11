@@ -3,8 +3,8 @@
 Esegui `prompt/token-research-prompt.md` per `[PROTOCOLLO] / [TICKER]`.
 
 Obiettivo operativo:
-- crea o riusa la cartella `[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test`
-- salva l output in `[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
+- crea o riusa la cartella `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test`
+- salva l output in `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-test.md`
 - raccogli autonomamente le fonti necessarie
 - compila il report completo seguendo rigorosamente `prompt/token-research-prompt.md`
 - non limitarti a un riassunto in chat
