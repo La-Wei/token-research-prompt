@@ -521,6 +521,14 @@ Rispondi in modo secco:
 - cosa sto rischiando di capire male io come analista?
 - qual è il vantaggio concreto che regge la tesi anche fuori dalla narrativa crypto, se esiste?
 
+18A. Strongest countercase
+Prima di passare alla source reconciliation, stressa la tua tesi con il miglior caso contrario in massimo 6 righe.
+Rispondi in modo secco:
+- qual è la lettura più forte contro il mio verdict finale?
+- quale assunzione del mio framework potrebbe essere sbagliata, incompleta o troppo severa?
+- quale singolo sviluppo o dato nei prossimi 90 giorni farebbe apparire questa analisi troppo prudente o troppo aggressiva?
+Questo blocco non deve ribaltare artificialmente la tesi: deve testarne la robustezza.
+
 19. Source reconciliation
 Compila questa sezione solo se emergono divergenze rilevanti tra fonti.
 Per ciascuna divergenza rilevante indica:
