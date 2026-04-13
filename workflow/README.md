@@ -16,7 +16,15 @@ Convenzione output:
 I file sono scritti per essere richiamati direttamente come prompt di workflow.
 Sostituisci solo i placeholder operativi del token che vuoi analizzare.
 
+Nota di perimetro:
+- questa README documenta solo i workflow pubblici del repo
+- eventuali workflow locali di execution possono esistere sul filesystem ma non fanno parte della superficie documentata o da committare
+- eventuali workflow locali di maintenance / audit possono esistere sul filesystem ma non fanno parte della superficie documentata o da committare
+- tutti i file gia presenti in `output/` vanno trattati come artefatti legacy, non come benchmark autorevoli
+
 ## Ordine Consigliato
+
+Per pipeline token:
 
 1. esegui [`01-token-research.md`](01-token-research.md)
 2. esegui [`02-token-research-verification.md`](02-token-research-verification.md)

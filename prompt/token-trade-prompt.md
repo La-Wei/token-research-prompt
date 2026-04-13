@@ -106,7 +106,7 @@ Questo significa:
 - se scegli il lato opposto, devi spiegare in modo esplicito:
   - perche il lato prioritario non e tradabile adesso
   - perche il lato opposto ha edge migliore nonostante il fondamentale
-- se il lato prioritario e concettualmente giusto ma non ha trigger, timing o carry favorevole, la risposta corretta puo restare `no trade`
+- se il lato prioritario e concettualmente giusto ma non ha ancora trigger, timing o carry favorevole, la risposta corretta puo essere `watchlist` o `no trade` a seconda di quanto il setup sia gia disciplinabile
 - non dare automaticamente pari priorita operativa ai due lati solo per sembrare neutrale
 
 FORZA DELLA PRIORITA DIREZIONALE
@@ -131,6 +131,25 @@ Guida pratica:
   - il verdetto fondamentale ereditato e `fairly priced`, `non disponibile` o `non analizzabile con rigore sufficiente`
   - oppure la copertura dati e troppo debole per usare davvero il fondamentale come bussola operativa
 
+GATE MECCANICO DELLA PRIORITA DIREZIONALE
+
+Non limitarti a una sensazione qualitativa.
+Valuta sempre questi `4` gate:
+- `gate 1 - verdict`: il verdetto fondamentale e davvero direzionale? `si / no`
+- `gate 2 - confidenza`: la confidenza del giudizio strutturale e almeno `media`? `si / no`
+- `gate 3 - copertura dati`: la copertura dati e almeno `parziale` senza buchi critici sui blocchi che contano per l execution? `si / no`
+- `gate 4 - regime`: il mercato non e piu dominato da un evento aperto o da un possibile `structural break` non digerito? `si / no`
+
+Classificazione obbligatoria:
+- `forte` solo se `gate 1 = si` e passano tutti i gate `2 / 3 / 4`
+- `debole` se `gate 1 = si` ma fallisce esattamente `1` tra i gate `2 / 3 / 4`
+- `nessuna` se `gate 1 = no` oppure falliscono `2` o piu gate tra `2 / 3 / 4`
+
+Hard stops:
+- non usare `forte` se la copertura dati e `insufficiente`
+- non usare `forte` se il regime e ancora `event-driven` non risolto
+- se il fondamentale e direzionale ma la bussola e troppo sporca per guidare l execution, usa `debole` o `nessuna`, non forzare una priorita
+
 Input ideali:
 - output o sintesi del `prompt/token-research-prompt.md`, con almeno:
   - business quality
@@ -143,7 +162,7 @@ Input ideali:
   - `max`
   - `1Y`
   - `6M / 3M`
-  - `1M` candle, se disponibile
+- `monthly candle`, se disponibile
 - screenshot o chart su timeframe alti: 1W / 1D
 - screenshot o chart su timeframe medi: 4H
 - screenshot o chart su timeframe bassi: 1H / 15m, se servono al timing
@@ -154,7 +173,7 @@ TASSONOMIA TIMEFRAME OBBLIGATORIA
 
 Non usare `HTF` come parola ombrello se questo rende ambigua la lettura.
 Separa sempre:
-- `secular / investment context`: massimo storico disponibile, poi `1Y`, `6M`, `3M`, `1M` se disponibile
+- `secular / investment context`: massimo storico disponibile, poi `1Y`, `6M`, `3M` e `monthly candle`, se disponibile
 - `higher timeframe directional`: 1W e 1D
 - `mid timeframe`: 4H
 - `execution timeframe`: 1H e 15m
@@ -165,7 +184,7 @@ Se l asset e abbastanza maturo da avere storico lungo, non fermarti a `7d`, `30d
 Per asset come `BTC`, `ETH`, `SOL`, `AAVE`, `UNI` o altri nomi con anni di storia, la lettura investment deve guardare indietro abbastanza da coprire piu regimi di mercato, non solo il mese corrente.
 Un bias `1W bullish` puo convivere con un `1D iper-esteso` e con un `bias operativo neutral`.
 Nel verdetto finale specifica sempre almeno:
-- `bias investment / secular`
+- `bias secular / investment`
 - `bias 1W`
 - `bias 1D`
 - `bias operativo`
@@ -217,12 +236,12 @@ Cerca sempre, se disponibile:
 - `1Y`
 - `6M`
 - `3M`
-- `1M` per il contesto secolare / investment
+- `monthly candle` per il contesto secolare / investment
 - `1W` per il bias alto
 - `1D` per il directional context
 - `4H` per la struttura intermedia
 - `1H / 15m` per il timing
-Se non trovi `max / 1Y / 6M / 3M / 1M`, dichiara esplicitamente che il massimo timeframe disponibile e `1W` e non fingere una view `HODL` di anni.
+Se non trovi `max / 1Y / 6M / 3M / monthly candle`, dichiara esplicitamente che il massimo timeframe disponibile e `1W` e non fingere una view `HODL` di anni.
 
 Per token trattati su Hyperliquid, cerca prima di tutto:
 - `candleSnapshot` per 15m / 1h / 4h / 1d / 1w
@@ -243,7 +262,7 @@ Per la parte `investment / HODL` non basta quasi mai una singola finestra `7d / 
 Se l asset ha abbastanza storia, devi almeno provare a leggere:
 - un chart `max` o il piu lungo possibile
 - `1Y`
-- un timeframe che mostri il regime intermedio (`6M / 3M / 1M`)
+- un timeframe che mostri il regime intermedio (`6M / 3M`) e, se disponibile, `monthly candle`
 
 FRAMEWORK PROBABILISTICO OBBLIGATORIO
 
@@ -276,6 +295,44 @@ Per ogni scenario indica:
 Se nessun lato ha aspettativa abbastanza buona dopo spread, slippage, carry e rischio squeeze:
 - concludi `no trade`
 
+CLASSIFICATORE DELLO STATO TATTICO
+
+Usa sempre una di queste classi finali:
+- `attivo`
+- `condizionale`
+- `watchlist`
+- `no-trade`
+
+Definizioni:
+- `attivo`: trigger gia presente, invalidazione chiara, lato con `EV` migliore definito, eseguibilita almeno `media`
+- `condizionale`: trigger preciso e disciplinabile ma non ancora attivo; si puo gia preparare un ordine condizionale
+- `watchlist`: esiste una direzione o un edge teorico, ma trigger, invalidazione o execution non sono ancora abbastanza puliti per chiamarlo trade
+- `no-trade`: nessun lato supera davvero costi, carry, squeeze risk, execution friction o inaffidabilita del prezzo
+
+Mapping verso il prompt di execution:
+- `attivo` -> `ordine valido adesso`
+- `condizionale` -> `ordine condizionale`
+- `watchlist` -> `watchlist`
+- `no-trade` -> `no-order`
+
+GATE MECCANICO DELLO STATO TATTICO
+
+Per evitare ambiguita tra `condizionale`, `watchlist` e `no-trade`, valuta sempre questi gate sul lato con `EV` migliore adesso.
+Quel lato e il vero `lato candidato all attivazione`, e puo coincidere oppure no con il lato prioritario derivato dal fondamentale.
+
+Gate obbligatori:
+- `gate A - lato candidato`: esiste un lato con `EV` migliore chiaramente identificabile? `si / no`
+- `gate B - trigger definito`: esiste un trigger preciso e osservabile? `si / no`
+- `gate C - trigger attivo`: il trigger e gia presente adesso? `si / no`
+- `gate D - invalidazione disciplinabile`: l invalidazione e chiara e abbastanza vicina? `si / no`
+- `gate E - execution`: execution almeno `media` senza blocker straordinario da venue / carry / squeeze / evento aperto? `si / no`
+
+Classificazione obbligatoria:
+- `attivo` solo se `A / B / C / D / E = si`
+- `condizionale` se `A / B / D / E = si` ma `C = no`
+- `watchlist` se esiste una direzione plausibile ma manca ancora almeno uno tra `B`, `D` o `E` senza che il caso sia del tutto invalidato
+- `no-trade` se `A = no` oppure se nessun lato supera davvero costi, carry, execution friction o affidabilita del prezzo
+
 REGOLE DI RIGORE
 
 - Non inventare livelli, pattern o dati non visibili nei chart forniti.
@@ -296,7 +353,7 @@ REGOLE DI RIGORE
   - timing operativo
 - Specifica sempre in quale timeframe vive la tesi.
 - Specifica sempre cosa invalida la tesi sul timeframe rilevante.
-- Non usare una frase tipo `bias HTF: bullish` se in realta stai comprimendo segnali diversi tra `1M`, `1W` e `1D`.
+- Non usare una frase tipo `bias HTF: bullish` se in realta stai comprimendo segnali diversi tra `monthly / secular`, `1W` e `1D`.
 - Se i timeframe alti divergono, esplicitalo. Esempio corretto:
   - `bias secular bullish`
   - `1W bullish`
@@ -310,14 +367,14 @@ REGOLE DI RIGORE
 - Non confondere un buon risk/reward con una buona eseguibilita.
 - Non usare linguaggio assoluto tipo `partira sicuramente`, `reversal confermato`, `short ovvio` o `breakout pulito` se il dato non lo supporta chiaramente.
 - Se un evento materiale e ancora aperto e impedisce di capire se il move sia tecnico o strutturale, `no trade` resta un output preferibile a una view inventata.
-- Se il setup non e abbastanza chiaro, concludi `no trade`.
+- Se il setup non e abbastanza chiaro ma una direzione resta plausibile, usa `watchlist`; usa `no trade` solo quando nessun lato e davvero disciplinabile.
 
 ORDINE DI LAVORO OBBLIGATORIO
 
 1. Leggi prima il report fondamentale, se disponibile, ed estrai la tesi strutturale ereditata.
 2. Leggi il report di verifica, se disponibile, e preferiscilo in caso di conflitto.
 3. Verifica gli eventi recenti e stabilisci se il mercato sta reagendo a un `event shock` ancora aperto.
-4. Se i chart non sono gia forniti, fai source discovery e recupera prima lo storico lungo disponibile: `max / 1Y / 6M / 3M / 1M`, poi `1W / 1D / 4H / 1H / 15m`.
+4. Se i chart non sono gia forniti, fai source discovery e recupera prima lo storico lungo disponibile: `max / 1Y / 6M / 3M / monthly candle`, poi `1W / 1D / 4H / 1H / 15m`.
 5. Leggi prima il contesto `secular / investment`, se i dati lo permettono.
 6. Leggi poi `1W / 1D`.
 7. Verifica allineamento o conflitto sul `4H`.
@@ -332,27 +389,54 @@ ORDINE DI LAVORO OBBLIGATORIO
   - `nessuna`
 11. Poi integra positioning, funding, OI, liquidita e squeeze risk.
 12. Esegui un `trade activation test` esplicito.
-13. Solo dopo decidi qual e la migliore espressione per:
+13. Solo dopo decidi:
+  - lo stato del setup tattico
+  - il lato con `EV` migliore adesso
+  - se quel lato e gia `attivo`, solo `condizionale`, solo `watchlist` o `no-trade`
+14. Poi decidi qual e la migliore espressione per:
   - `investment / HODL`
   - `spot / positional`
   - `swing long`
   - `swing short`
   - `no trade`
 
+MAPPA OPERATIVA OBBLIGATORIA
+
+Per evitare duplicazioni o omissioni, usa sempre questa mappa:
+- `event e regime discovery`:
+  - serve come metodo di lavoro
+  - deve emergere nella sezione `1. Recent event e regime evidence log`
+- `source discovery`:
+  - deve emergere nella sezione `0. Market status`
+  - devi dire quali fonti hai usato o tentato se la copertura resta debole
+- `priorita direzionale`:
+  - deve chiudersi in `8A. Directional symmetry test`
+  - e poi in `14. Decisione finale`
+- `framework probabilistico`:
+  - deve chiudersi in `12A. Probabilistic scenario map`
+- `trade activation test`:
+  - deve usare il lato con `EV` migliore adesso come `lato candidato all attivazione`
+  - deve chiudersi in `12B. Trade activation test`
+- `stato tattico finale`:
+  - deve essere coerente tra `12B`, `13` e `14`
+
 STRUTTURA OBBLIGATORIA
 
 0. Market status
 - qualita dei chart: alta / media / bassa
 - copertura dati: completa / parziale / insufficiente
+- fonti principali usate
+- fonti tentate ma non ottenute, se rilevanti
 - timeframe disponibili
-- profondita storica disponibile: max / 1Y / 6M / 3M / 1M / 1W o equivalente
+- profondita storica disponibile: max / 1Y / 6M / 3M / monthly candle / 1W o equivalente
 - report fondamentale disponibile: si / no
 - report di verifica disponibile: si / no
 - qualita del contesto ereditato: alta / media / bassa
 - principali buchi informativi
+- blocchi ancora non osservabili
 - confidenza preliminare: alta / media / bassa
 
-1. Recent event e regime shock audit
+1. Recent event e regime evidence log
 Compila sempre questa sezione, anche se la risposta e `nessun evento materiale`.
 
 Per gli ultimi `7d`, `30d` e `90d`, se rilevanti:
@@ -373,7 +457,7 @@ Chiudi con un mini verdict:
 - stato: chiuso / in evoluzione / non risolto
 
 2. Executive view
-Massimo 14 righe:
+Massimo 16 righe:
 - tesi fondamentale ereditata in 1-2 righe
 - coerenza o divergenza rispetto al setup attuale
 - investment view: bullish / bearish / neutral / non valutabile
@@ -381,7 +465,7 @@ Massimo 14 righe:
 - lato prioritario da cercare: long / short / nessuno
 - forza della priorita direzionale: forte / debole / nessuna
 - lato con edge maggiore adesso: long / short / nessuno
-- stato del setup tattico: attivo / condizionale / non attivo
+- stato del setup tattico: attivo / condizionale / watchlist / no-trade
 - perche il lato opposto non e preferito
 - migliore espressione investment: accumulate / HODL / avoid / non valutabile
 - migliore espressione tattica: spot accumulate / spot hold / swing long / swing short / no trade
@@ -396,7 +480,7 @@ Analizza prima il massimo storico disponibile:
 - `max`, se disponibile
 - `1Y`
 - `6M / 3M`
-- `1M`, se disponibile
+- `monthly candle`, se disponibile
 Se questi timeframe non sono disponibili, dichiaralo esplicitamente e non forzare una tesi `HODL`.
 - regime secolare: bull / bear / range / ricostruzione / distribuzione
 - distanza da ATH e da drawdown profondi rilevanti
@@ -472,6 +556,7 @@ Compila sempre questa sezione, anche se il risultato finale e `no trade`.
 - miglior caso `long` disponibile adesso
 - miglior caso `short` disponibile adesso
 - quale lato ha l asimmetria migliore
+- quale lato ha l execution migliore
 - perche il lato opposto e inferiore
 - differenza tra `tesi corretta` e `trade con edge`
 - se il fondamentale e `sopravvalutato`: perche lo short e preferibile oppure perche non lo e ancora
@@ -481,7 +566,7 @@ Compila sempre questa sezione, anche se il risultato finale e `no trade`.
 Compila solo se ha davvero senso e se la profondita storica lo consente:
 - espressione investment: accumulate now / accumulate on major pullbacks / HODL if already in / avoid / non valutabile
 - orizzonte dominante: multi-quarter / multi-year
-- timeframe usato per la tesi investment: max / 1Y / 6M / 3M / 1M
+- timeframe usato per la tesi investment: max / 1Y / 6M / 3M / monthly candle
 - coerenza con la tesi fondamentale: coerente / parzialmente coerente / in conflitto
 - cosa rende sensato il caso investment
 - cosa lo invalida
@@ -500,21 +585,23 @@ Compila solo se ha davvero senso:
 - cosa la peggiorerebbe
 
 11. Swing long case
-Compila sempre, anche se la conclusione e `non attivo adesso`:
+Compila sempre.
 - trigger long
 - livello o zona di entrata
 - invalidazione
 - primi target
 - timeframe dominante
+- stato del case: attivo / condizionale / watchlist / no-trade
 - condizione che trasformerebbe il long in no trade
 
 12. Swing short case
-Compila sempre, anche se la conclusione e `non attivo adesso`:
+Compila sempre.
 - trigger short
 - livello o zona di entrata
 - invalidazione
 - primi target
 - timeframe dominante
+- stato del case: attivo / condizionale / watchlist / no-trade
 - condizione che trasformerebbe lo short in no trade
 
 12A. Probabilistic scenario map
@@ -536,23 +623,25 @@ Chiudi la sezione con:
 12B. Trade activation test
 Compila sempre questa sezione prima del `no-trade test`.
 Rispondi in modo secco:
-- il lato prioritario ha un trigger attivo adesso?
+- qual e il lato con `EV` migliore adesso / candidato all attivazione: long / short / nessuno
+- questo lato coincide con il lato prioritario oppure no?
+- il lato candidato all attivazione ha un trigger attivo adesso?
 - l invalidazione e chiara e abbastanza vicina da rendere il trade disciplinabile?
-- il lato con `EV` migliore coincide con il lato prioritario oppure no?
 - l eseguibilita e almeno `media`?
 - spread, slippage, carry o squeeze risk stanno ancora sabotando il setup?
 - un evento aperto impedisce ancora di trattare il prezzo come base affidabile?
 
 Regola di chiusura:
-- se il trigger e `attivo`
+- se il lato candidato all attivazione e definito
+- e il suo trigger e `attivo`
 - e l invalidazione e chiara
-- e il lato con `EV` migliore e definito
 - e l eseguibilita e almeno `media`
 - e non c e un blocker straordinario da evento / carry / venue
 allora non chiudere con un `no trade` vago: devi classificare il setup come `attivo`.
 
 Chiudi sempre con:
-- stato del setup tattico: attivo / condizionale / non attivo
+- stato del setup tattico: attivo / condizionale / watchlist / no-trade
+- motivo del lato candidato all attivazione
 - motivo principale della classificazione
 
 13. No-trade test
@@ -565,18 +654,24 @@ Rispondi in modo secco:
 - aspettare darebbe un setup migliore?
 - uno dei due lati ha davvero edge probabilistico netto dopo costi e carry?
 
+Regola di chiusura:
+- se `A / B / D / E = si` ma il trigger non e ancora attivo, preferisci `condizionale`
+- se un lato ha edge teorico ma manca ancora un trigger preciso o un invalidazione pulita, preferisci `watchlist`
+- usa `no-trade` solo se nessun lato resta davvero valido dopo costi, carry, execution e affidabilita del prezzo
+
 14. Decisione finale
 Chiudi sempre con:
 - verdict fondamentale ereditato: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente / non disponibile
 - stato evento/regime: pulito / rumor-driven / event-driven / structural-break risk
-- bias 1M / secular: bullish / bearish / neutral / non disponibile
+- bias secular / investment: bullish / bearish / neutral / non disponibile
 - bias 1W: bullish / bearish / neutral / non valutabile
 - bias 1D: bullish / bearish / neutral / non valutabile
 - bias operativo: bullish / bearish / neutral
 - lato prioritario da cercare: long / short / nessuno
 - forza della priorita direzionale: forte / debole / nessuna
 - lato con edge maggiore adesso: long / short / nessuno
-- stato del setup tattico: attivo / condizionale / non attivo
+- lato candidato all attivazione: long / short / nessuno
+- stato del setup tattico: attivo / condizionale / watchlist / no-trade
 - migliore espressione investment: accumulate / HODL / avoid / non valutabile
 - migliore espressione tattica: spot accumulate / spot hold / swing long / swing short / no trade
 - scenario dominante con probabilita stimata
@@ -607,6 +702,9 @@ REGOLE FINALI
 - Se long e short hanno edge simile o mediocre, concludi `no trade`.
 - Se il `trade activation test` passa, non restare nel vago: classifica il setup come `attivo`.
 - Se il lato prioritario ha struttura valida ma trigger non ancora attivo, classificalo come `condizionale`, non come `attivo`.
+- Se il lato con `EV` migliore non coincide con il lato prioritario, dillo esplicitamente e spiega perche il fondamentale non sta ancora vincendo sull execution.
+- Se il lato corretto esiste ma trigger o invalidazione sono ancora troppo sporchi, classificalo come `watchlist`, non come `no-trade`.
+- Usa `no-trade` solo quando nessun lato conserva edge abbastanza pulito dopo costi, carry, squeeze risk ed execution friction.
 - Non lasciare che il bias fondamentale sovrascriva il chart.
 - Non lasciare che il chart di breve periodo sovrascriva il contesto HTF senza prova sufficiente.
 - Usa il prompt fondamentale come contesto ereditato, non come qualcosa da riscrivere da zero.

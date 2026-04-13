@@ -16,12 +16,8 @@ Ogni sezione deve distinguere chiaramente tra:
 - fatti verificabili
 - inferenze ragionevoli
 - speculazioni
-Apri sempre con un mini research status di massimo 5 righe che indichi:
-- qualità delle fonti: alta / media / bassa
-- copertura dati: completa / parziale / insufficiente
-- principali buchi informativi
-- rischio principale di errore analitico
-- confidenza preliminare: alta / media / bassa
+Apri sempre con la sezione `0. Research mode e perimetro evidenze`.
+Non aggiungere un mini status separato fuori struttura.
 
 ## CONTROLLI OBBLIGATORI TRASVERSALI
 
@@ -75,9 +71,9 @@ Per ogni numero importante specifica:
 - unità di misura: USD, token nativo o altro
 Non confrontare market cap attuale con fees, revenue o multipli di periodi non comparabili senza dirlo esplicitamente.
 
-7. Source reconciliation
+7. Source reconciliation discipline
 Se docs, governance, DeFiLlama, CoinGecko, Tokenomist, Dune, articoli giornalistici o dashboard del protocollo non coincidono, non scegliere subito una narrativa.
-Crea una sezione “source reconciliation” con:
+Crea un blocco `source reconciliation evidence log` con:
 - dato
 - fonte
 - tipo di fonte: onchain / docs-governance / dashboard terza / team-reported / giornalistica
@@ -98,6 +94,31 @@ Quando waterfall, supply, treasury o holder base non si possono chiudere con rig
   - perche il buco conta davvero
   - come cambia la confidenza
 - privilegia l implicazione analitica rispetto alla ripetizione dell assenza del dato
+
+7B. Research mode selector
+Classifica sempre il report in una di queste due modalita:
+- `full diligence`
+- `opacity-compressed`
+
+Usa `full diligence` se:
+- le fonti sono almeno `medie`
+- la copertura dati e almeno `parziale`
+- i blocchi che decidono il fair value strutturale sono ricostruibili con rigore sufficiente, soprattutto:
+  - waterfall / value accrual
+  - supply / unlock
+  - treasury / capital allocation
+  - business scale / quality dei ricavi / valuation
+- la market structure del token puo anche restare `limitata`, se non impedisce di chiudere con rigore business, token e fair value
+
+Usa `opacity-compressed` se:
+- le fonti sono `basse` o troppo indirette
+- la copertura dati e `insufficiente` o troppo bucata sui blocchi che contano
+- waterfall, supply, treasury o il legame business -> token non si chiudono con evidenza primaria o metodologica abbastanza seria
+
+Regole dure:
+- se sei in `opacity-compressed` per buchi critici su waterfall, supply o treasury, la `confidenza del giudizio` non puo superare `bassa`
+- in `opacity-compressed`, dichiara i limiti una volta in modo ordinato e poi aggiorna solo le implicazioni che cambiano la tesi
+- non usare la sola scarsita di dati di market microstructure come motivo sufficiente per forzare `opacity-compressed`, se il fair-value work resta chiudibile con rigore
 
 8. Claim audit
 Per ogni affermazione forte che impatta la tesi, soprattutto se molto bullish o molto bearish, esplicita:
@@ -151,7 +172,7 @@ Se il vantaggio concreto esiste soprattutto per operatori, insiders, staker o to
 Se il progetto sembra soprattutto un mercato tokenizzato o un coordination layer e non un prodotto strutturalmente superiore, dillo esplicitamente.
 Se non riesci a dimostrare un vantaggio concreto contro alternative realistiche, abbassa la business quality anche se il tokenomics design è interessante.
 
-12. Recent event audit
+CT-12. Recent event evidence log
 Prima del verdetto finale verifica sempre cosa e successo negli ultimi `7d`, `30d` e `90d`.
 Controlla almeno, se rilevanti:
 - dispute di governance / founder conflict / key person exit
@@ -173,7 +194,7 @@ Per ogni evento materiale indica sempre:
 
 Se non trovi eventi materiali, scrivilo esplicitamente in una riga.
 
-13. Narrative break e trust shock test
+CT-13. Narrative break e trust shock test
 Se c e un evento recente che tocca `decentralizzazione`, `governance`, `solvibilità`, `trasparenza`, `sicurezza`, `controllo founder`, `dipendenza da un singolo subnet/partner/exchange`, non archiviarlo come semplice rumore.
 Classificalo sempre come uno dei seguenti:
 - rumore / drama di breve
@@ -190,7 +211,48 @@ Per controversie live usa questa gerarchia:
 
 Se l evento e materialmente rilevante, puo sovrascrivere la lettura precedente di `market setup`, `token quality` o `verdict finale`.
 
+## MAPPA OBBLIGATORIA DEI CONTROLLI TRASVERSALI
+
+Per evitare duplicazioni o omissioni, usa sempre questa mappa:
+- controlli `1-5`:
+  - devono emergere nelle sezioni `4`, `5`, `6`, `7`
+  - e devono chiudersi esplicitamente in `7A. Token accrual e net supply verdict`
+- controllo `6. Time anchoring e normalization`:
+  - si applica a qualunque sezione con numeri
+  - soprattutto `3`, `4`, `6`, `16`, `17`
+- controllo `7. Source reconciliation discipline`:
+  - funziona come evidence log metodologico durante l analisi
+  - la sezione finale `19. Residual source divergences` deve riportare solo divergenze residue che cambiano verdict o confidenza
+- controllo `8. Claim audit`:
+  - va applicato inline nei punti dove usi claim forti
+  - le `1-3` claim piu importanti per la tesi devono essere richiamate in `18B. Claim audit residuale`
+- controllo `9. Metric perimeter reconciliation`:
+  - deve emergere soprattutto in `3. Business quality`, `16. Valuation thinking` e `19. Residual source divergences`, se resta una divergenza aperta
+- controllo `10. Token accrual verdict`:
+  - deve chiudersi esplicitamente in `7A. Token accrual e net supply verdict`
+  - e va richiamato in `21. Conclusione netta`
+- controllo `11. Necessity of existence test`:
+  - si chiude in `2. Che cosa fa davvero il protocollo`
+- controlli `CT-12 / CT-13`:
+  - il `Recent event evidence log` serve come log metodologico dei fatti
+  - `12. Thesis-change synthesis` deve sintetizzare solo gli eventi che cambiano davvero la tesi
+  - `13. Catalizzatori` deve coprire solo il potenziale residuo non ancora accaduto o non ancora pienamente prezzato
+  - `15. Bear case` deve usare gli eventi solo come rischio strutturale, non ricopiare il log eventi
+
 ## STRUTTURA OBBLIGATORIA
+
+0. Research mode e perimetro evidenze
+- qualità delle fonti: alta / media / bassa
+- copertura dati: completa / parziale / insufficiente
+- modalita: `full diligence` / `opacity-compressed`
+- motivo della scelta
+- copertura market structure: robusta / limitata / minima
+- blocchi osservabili con rigore sufficiente
+- blocchi ancora non chiudibili
+- implicazione principale dei buchi dati
+- rischio principale di errore analitico
+- cap di confidenza, se presente
+- confidenza preliminare: alta / media / bassa
 
 1. TL;DR iniziale
 Apri con un riassunto immediato in massimo 8 righe:
@@ -202,6 +264,8 @@ Apri con un riassunto immediato in massimo 8 righe:
 - giudizio preliminare
 
 2. Che cosa fa davvero il protocollo
+- questa sezione deve spiegare il prodotto e la necessità di esistenza
+- non usare questa sezione per anticipare in dettaglio metriche, multipli o market structure: quelle vivono piu avanti
 - Spiega in modo semplice ma preciso cosa fa.
 - Quale problema risolve davvero.
 - Chi lo usa davvero o dovrebbe usarlo.
@@ -223,7 +287,45 @@ Chiudi sempre la sezione con un mini verdict atomico di massimo 6 righe:
 - necessità del token per il prodotto: alta / media / bassa / quasi nulla
 - il progetto è soprattutto: prodotto superiore / coordination layer / mercato tokenizzato / packaging narrativo
 
+2A. Compression branch per asset opachi
+Compila questa sezione solo se la modalita e `opacity-compressed`.
+- se usi questo ramo, le sezioni `3-11` vengono sostituite dal branch compresso qui sotto e non vanno compilate in forma completa, salvo dati eccezionalmente solidi su un singolo blocco
+- non trattare le sezioni `3-11` come una checklist da riempire meccanicamente
+- usa invece questi tre blocchi sostitutivi:
+  - `2A.1 Business e unit economics compressed`
+  - `2A.2 Token / supply / treasury compressed`
+  - `2A.3 Market structure / holders compressed`
+- per ciascun blocco compresso indica sempre:
+  - cosa e verificabile
+  - cosa resta bloccato
+  - quale inferenza importante non puoi chiudere
+  - come cambia il verdict o la confidenza
+- non ripetere gli stessi buchi informativi gia dichiarati in `0. Research mode e perimetro evidenze`
+- dopo il ramo `2A`, continua comunque con:
+  - `7A. Token accrual e net supply verdict`
+  - `12-21`
+
+Template minimo:
+- `2A.1 Business e unit economics compressed`
+  - scala del business verificabile
+  - qualità dei ricavi verificabile
+  - metriche non chiudibili
+  - implicazione sul fair value
+- `2A.2 Token / supply / treasury compressed`
+  - meccanismo di accrual verificabile
+  - supply / unlock / treasury verificabili
+  - punti ancora non dimostrabili
+  - implicazione sul token
+- `2A.3 Market structure / holders compressed`
+  - ciò che si vede davvero su liquidita / holders / float
+  - ciò che resta opaco
+  - implicazione su fragilita e confidenza
+
 3. Business quality: qualità reale del protocollo
+Compila questa sezione solo se la modalita e `full diligence`.
+- focalizzati su metriche, qualità della crescita e qualità della domanda
+- non ripetere qui la spiegazione base del prodotto gia chiusa nella sezione `2`
+- per le metriche piu importanti, esplicita sempre definizione e perimetro inline
 Analizza:
 - TVL / AUM / deposits / active loans / assets outstanding / managed assets / capital deployed / volume / usage / fees / revenue / net revenue
 - crescita storica e recente
@@ -249,6 +351,7 @@ Domande chiave:
 - il protocollo monetizza uso reale del prodotto o monetizza soprattutto la partecipazione al sistema?
 
 4. Unit economics e qualità dei ricavi
+Compila questa sezione solo se la modalita e `full diligence`.
 - Da dove arrivano i ricavi.
 - Quanto sono ricorrenti.
 - Quanto dipendono dal market regime.
@@ -261,6 +364,7 @@ Domande chiave:
 - Il sistema monetizza soprattutto il prodotto finale oppure la partecipazione al network?
 
 5. Token: come cattura valore davvero
+Compila questa sezione solo se la modalita e `full diligence`.
 Analizza in dettaglio:
 - fee switch
 - revenue share
@@ -287,6 +391,7 @@ Domande chiave:
 Non trattare “buyback” come sinonimo automatico di “deflazione”.
 
 6. Supply, unlock e dilution analysis
+Compila questa sezione solo se la modalita e `full diligence`.
 Analizza in modo aggressivo:
 - circulating supply reale
 - total supply
@@ -313,6 +418,7 @@ Domande chiave:
 - il protocollo sta riducendo supply netta o sta solo redistribuendo / ricomprando una parte dell’offerta mentre altra supply entra sul mercato?
 
 7. Treasury e capital allocation
+Compila questa sezione solo se la modalita e `full diligence`.
 - Quanto vale la treasury e in cosa è denominata.
 - Quanto runway ha il progetto.
 - Come viene usata: buyback, grants, incentivi, market making, investimenti, copertura operativa.
@@ -321,7 +427,22 @@ Domande chiave:
 - C’è rischio di emissioni opportunistiche, spese inefficienti o governance ostile?
 - I token controllati dal protocollo sono inattivi, strategici o potenziali seller futuri?
 
+7A. Token accrual e net supply verdict
+Compila sempre questa sezione, in `full diligence` o in `opacity-compressed`.
+Qui devi chiudere in modo esplicito i controlli trasversali su waterfall, buyback, supply netta e token accrual.
+- il token riceve valore economico: diretto / indiretto / quasi nullo
+- il driver principale del bull case e: business growth / buyback mechanics / scarsita narrativa / mix
+- i buyback sono materialmente rilevanti sul market cap attuale: si / no / non dimostrabile
+- i buyback superano la pressione da unlock / emissioni: si / no / non dimostrabile
+- i token riacquistati spariscono davvero: si / no / parzialmente / non dimostrabile
+- la supply netta appare: in riduzione / stabile / in aumento / non chiudibile con rigore
+- il legame business -> token e: forte / medio / debole / quasi nullo / non dimostrabile
+- mini verdict finale della sezione: bullish per il token / neutro / fragile / negativo / non chiudibile con rigore
+
 8. Posizionamento competitivo
+Compila questa sezione solo se la modalita e `full diligence`.
+- confronta soprattutto vantaggio competitivo e pricing del vantaggio
+- non ripetere qui la spiegazione base del prodotto gia chiusa in `2`
 Dividi tra:
 - competitor diretti
 - competitor indiretti
@@ -354,6 +475,9 @@ Domande chiave:
 - c’è spazio per rerating o è già prezzato come winner?
 
 9. Moat, rischio copia e dipendenze esterne
+Compila questa sezione solo se la modalita e `full diligence`.
+- questa sezione deve testare la difendibilita del business
+- non rifare qui il confronto competitivo completo della sezione `8`
 - Quanto è facile copiare il prodotto.
 - Quanto dipende da una singola chain.
 - Quanto dipende da partner, issuer, market makers, exchange, oracoli, bridge, fondazioni, stablecoin o regolatori.
@@ -363,17 +487,19 @@ Domande chiave:
 - È un business robusto o fragile travestito da protocollo?
 
 10. Market structure del token
+Compila questa sezione solo se la modalita e `full diligence`.
+Questa sezione serve a giudicare la fragilita strutturale del token, non a costruire timing operativo.
 Analizza il setup di mercato del token solo se hai dati sufficienti e verificabili:
 - liquidità spot reale
 - profondità del book
 - qualità delle venue
 - concentrazione della liquidità
 - presenza di market makers
-- open interest
-- funding
-- basis
-- borrow cost
-- short availability
+- open interest, solo se materialmente rilevante
+- funding, solo se materialmente rilevante
+- basis, solo se materialmente rilevante
+- borrow cost, solo se materialmente rilevante
+- short availability, solo se materialmente rilevante
 - percentuale supply sugli exchange
 - wallet concentration
 - top holders
@@ -388,41 +514,32 @@ Domande chiave:
 - il mercato è abbastanza profondo da assorbire distribuzione insider?
 - i buyback hanno impatto materiale sul float o sono troppo piccoli rispetto alla liquidità e alla nuova offerta?
 Se i dati non bastano, non simulare precisione: dichiara i limiti informativi e riduci la confidenza.
+L assenza di microstructure avanzata non deve da sola invalidare un fair-value report se business, token e valuation restano chiudibili con rigore.
 
 11. Holder base e allineamento
+Compila questa sezione solo se la modalita e `full diligence`.
 - Chi possiede il token: team, fondi, foundation, community, users, whales, partner strategici, mercenari.
 - Quanto è concentrata la supply.
 - Gli holder sono allineati di lungo periodo o opportunisti.
 - Esiste una base di holder forte o solo floating speculativo.
 - I maggiori holder sono asset strategici o futuri seller.
 
-12. Sviluppi recenti e thesis-change events
+12. Thesis-change synthesis
 Analizza in modo obbligatorio gli ultimi `7d`, `30d` e `90d`.
 Non limitarti a un recap news.
-Questa sezione deve sintetizzare e aggiornare il controllo trasversale `12. Recent event audit`, non duplicarlo meccanicamente riga per riga.
+Questa sezione deve sintetizzare e aggiornare il controllo trasversale `CT-12. Recent event evidence log`, non duplicarlo meccanicamente riga per riga.
+Non fare qui un secondo event log completo.
+Seleziona solo gli `1-3` sviluppi che cambiano davvero tesi, pricing o confidenza.
 
-Controlla almeno, se rilevanti:
-- shock di prezzo o volume
-- governance dispute
-- founder / team departures
-- emission or tokenomics changes
-- exploit / hack / halt / outage
-- delisting / listing
-- perdita o ingresso di partner chiave
-- launch di prodotto o subnet che cambiano la tesi
-- azioni regolatorie o legali
-
-Per ogni evento materiale indica:
+Per ciascuno sviluppo davvero thesis-changing indica:
 - data
-- evento
-- fonte
+- sviluppo o evento
 - cosa e confermato
 - cosa resta allegation o non dimostrato
 - market reaction osservata
-- impatto su business / token / market structure / fiducia
+- cosa cambia davvero in tesi / token / pricing / confidenza
 - quanto sembra gia prezzato: poco / parzialmente / molto / non valutabile
-- orizzonte dell impatto: giorni / settimane / trimestri
-- se cambia o no la tesi
+- orizzonte dell impatto residuo: giorni / settimane / trimestri
 
 Chiudi sempre la sezione con un mini verdict:
 - nessun evento materiale / evento materiale ma transitorio / evento materiale e ancora aperto / structural break possibile
@@ -437,6 +554,11 @@ Dividi i catalizzatori in:
 - probabili
 - opzionali
 - puramente speculativi
+
+Regola di deduplicazione:
+- non riciclare qui un fatto gia accaduto solo per allungare la tesi
+- se un evento recente ha ancora una seconda gamba futura non prezzata, qui descrivi solo il potenziale residuo, non riscrivere l evento
+- questa sezione guarda avanti; `12. Thesis-change synthesis` guarda prima a cio che e gia successo
 
 Valuta:
 - nuovi listing
@@ -461,6 +583,10 @@ Costruisci tre scenari:
 - bull case realistico
 - bull case forte
 - bull case estremo
+
+Regola di focus:
+- qui descrivi le condizioni operative e strategiche necessarie
+- non ripetere la tabella numerica completa che verra tradotta in `17. Price map e scenario map`
 
 Per ciascuno indica:
 - quali milestone operative servono
@@ -503,6 +629,7 @@ Analizza:
 - confronto con se stesso in diversi regimi
 - multipli impliciti che il mercato sta già pagando
 - usa multipli temporalmente coerenti: market cap attuale contro metriche attuali o chiaramente normalizzate
+- non usare multipli se il perimetro della metrica non e riconciliato con abbastanza rigore
 
 Domande chiave:
 - il mercato sta prezzando crescita ragionevole o euforia?
@@ -510,6 +637,8 @@ Domande chiave:
 - il token è cheap su base relativa, assoluta, o nessuna delle due?
 
 17. Price map e scenario map
+Questa sezione deve tradurre la tesi in mappe numeriche.
+Non ripetere qui in dettaglio milestone narrative gia spiegate nel `Bull case`.
 Calcola cosa significherebbe:
 - ritorno all’ATH
 - ritorno a market cap / FDV coerenti con competitor comparabili
@@ -525,6 +654,8 @@ Per ogni scenario specifica:
 - probabilità qualitativa
 
 18. Mispricing test
+Questa sezione deve essere una sintesi secca dell errore di pricing.
+Non rifare qui il bull case, il bear case o la tabella scenario numerica.
 Rispondi in modo secco:
 - cosa sta sottovalutando il mercato?
 - cosa sta sopravvalutando il mercato?
@@ -541,9 +672,18 @@ Rispondi in modo secco:
 - quale singolo sviluppo o dato nei prossimi 90 giorni farebbe apparire questa analisi troppo prudente o troppo aggressiva?
 Questo blocco non deve ribaltare artificialmente la tesi: deve testarne la robustezza.
 
-19. Source reconciliation
+18B. Claim audit residuale
+Compila solo per le `1-3` claim piu importanti che muovono davvero la tesi.
+Per ciascuna claim indica:
+- claim
+- evidenza migliore disponibile
+- cosa dimostra davvero
+- giudizio: supportata / parzialmente supportata / non dimostrata
+- implicazione sulla confidenza o sul verdict
+
+19. Residual source divergences
 Compila questa sezione solo se emergono divergenze rilevanti tra fonti.
-Non ripetere il controllo trasversale `7. Source reconciliation`: qui riporta solo le divergenze residue che cambiano davvero la tesi o la confidenza.
+Non ripetere il controllo trasversale `7. Source reconciliation discipline`: qui riporta solo le divergenze residue che cambiano davvero la tesi o la confidenza.
 Per ciascuna divergenza rilevante indica:
 - metrica o dato
 - fonti in conflitto
@@ -566,11 +706,15 @@ Concludi con:
 
 21. Conclusione netta
 Chiudi sempre con:
+- research mode: full diligence / opacity-compressed
 - business quality: alta / media / bassa
 - necessità di esistenza del prodotto: alta / media / bassa / non dimostrata
 - token quality: alta / media / bassa
+- token accrual verdict: forte / medio / debole / quasi nullo / non dimostrabile
 - market setup: favorevole / neutro / fragile
+- regime eventi recente: pulito / evento materiale ma transitorio / evento ancora aperto / structural break possibile
 - verdict: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente
+- divergenze residue di fonti: nessuna materiale / basse / medie / alte
 - confidenza del giudizio: bassa / media / alta
 - orizzonte temporale implicito: breve / medio / lungo
 - motivo principale del giudizio in massimo 3 frasi
@@ -592,6 +736,8 @@ Chiudi sempre con:
 - Se i numeri non bastano, dillo.
 - Se manca trasparenza su supply, unlock o treasury, consideralo un rischio.
 - Se l asset e troppo opaco per chiudere con rigore waterfall, supply o treasury, comprimi la sezione e alza il rischio analitico invece di moltiplicare `non trovato`.
+- Se sei in modalita `opacity-compressed` per buchi critici su waterfall, supply o treasury, non assegnare `confidenza media` o `alta` senza una spiegazione eccezionale e verificabile.
+- Se sei in modalita `opacity-compressed`, usa il ramo `2A` come sostitutivo delle sezioni `3-11`; non compilare entrambe le versioni in parallelo.
 - Ragiona prima sul business, poi sul token, poi sul prezzo.
 - Cerca di distruggere la tesi prima di confermarla.
 - Evita bias da narrativa, bull market, brand e community.
@@ -610,9 +756,12 @@ Chiudi sempre con:
 - Per ogni claim forte, chiarisci sempre cosa è dimostrato, cosa è solo suggerito e cosa resta non dimostrato.
 - Se mancano fonti primarie o dati sufficienti per una conclusione seria, dichiara il token non analizzabile con rigore sufficiente.
 - Se esistono eventi materiali negli ultimi `30d`, dedica sempre loro una sezione separata e non nasconderli dentro `catalizzatori` o `bear case`.
+- Non trasformare `Catalizzatori` in una copia di `12. Thesis-change synthesis`.
+- Non trasformare `19. Residual source divergences` in una copia del `source reconciliation evidence log`.
 - Per eventi recenti usa sempre date assolute, non solo `oggi`, `ieri`, `pochi giorni fa`.
 - Distingui sempre tra `evento confermato`, `allegation`, `risposta del team`, `impatto di mercato osservato`.
 - Un governance shock, exploit, halt, delisting, key-person exit o rottura con un partner chiave può peggiorare il `market setup` anche se il business di lungo periodo non è ancora rotto.
+- L assenza di dati di microstructure avanzata non deve da sola degradare un report a `opacity-compressed` se business, token e valuation restano analizzabili con rigore.
 - Questo prompt produce un giudizio di ricerca e fair value strutturale, non un setup operativo di trading multi-timeframe.
 
 

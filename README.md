@@ -15,7 +15,7 @@ File principali:
 
 ## Struttura Del Repo
 
-Il repo ora e diviso in tre livelli:
+Il repo pubblico ora e diviso in tre livelli:
 - prompt base nella cartella `prompt/`:
   - `prompt/token-research-prompt.md`
   - `prompt/token-trade-prompt.md`
@@ -28,6 +28,12 @@ Il repo ora e diviso in tre livelli:
 
 I prompt base definiscono la metodologia.
 I workflow sono gli entrypoint consigliati quando vuoi eseguire il processo in modo ripetibile su un token specifico.
+
+Nota di perimetro:
+- questo README descrive solo la superficie pubblica del repo
+- eventuali file locali di execution / order construction non sono parte della documentazione pubblica e non vanno trattati come componenti committed del repo
+- eventuali file locali di maintenance / audit non sono parte della documentazione pubblica e non vanno trattati come componenti committed del repo
+- tutti i file gia presenti in `output/` vanno trattati come artefatti locali legacy, non come benchmark autorevoli del comportamento corrente dei prompt
 
 ## Scopo
 
@@ -158,7 +164,7 @@ Workflow suggerito:
 1. usa [workflow/01-token-research.md](workflow/01-token-research.md) per creare il report fondamentale completo su un token
 2. usa [workflow/02-token-research-verification.md](workflow/02-token-research-verification.md) per verificare il report con fonti primarie, metriche live e audit degli eventi recenti
 3. solo dopo usa [workflow/03-token-trade.md](workflow/03-token-trade.md) per derivare la migliore espressione operativa
-4. se i dati sono incompleti o un evento materiale e ancora aperto, preferisci `confidenza bassa` o `no trade`
+4. se i dati sono incompleti o un evento materiale e ancora aperto, preferisci `confidenza bassa`, `watchlist` o `no trade`
 
 Se vuoi lavorare direttamente sui prompt metodologici, puoi ancora usare:
 - [prompt/token-research-prompt.md](prompt/token-research-prompt.md)
