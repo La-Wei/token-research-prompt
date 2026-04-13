@@ -172,6 +172,10 @@ Se il vantaggio concreto esiste soprattutto per operatori, insiders, staker o to
 Se il progetto sembra soprattutto un mercato tokenizzato o un coordination layer e non un prodotto strutturalmente superiore, dillo esplicitamente.
 Se non riesci a dimostrare un vantaggio concreto contro alternative realistiche, abbassa la business quality anche se il tokenomics design è interessante.
 
+Nota di naming:
+- il prefisso `CT-` identifica controlli trasversali continui
+- serve a distinguerli dalle future sezioni strutturali `12. Thesis-change synthesis` e `13. Catalizzatori`
+
 CT-12. Recent event evidence log
 Prima del verdetto finale verifica sempre cosa e successo negli ultimi `7d`, `30d` e `90d`.
 Controlla almeno, se rilevanti:
@@ -234,6 +238,7 @@ Per evitare duplicazioni o omissioni, usa sempre questa mappa:
 - controllo `11. Necessity of existence test`:
   - si chiude in `2. Che cosa fa davvero il protocollo`
 - controlli `CT-12 / CT-13`:
+  - il prefisso `CT-` li distingue dalle sezioni strutturali `12` e `13`
   - il `Recent event evidence log` serve come log metodologico dei fatti
   - `12. Thesis-change synthesis` deve sintetizzare solo gli eventi che cambiano davvero la tesi
   - `13. Catalizzatori` deve coprire solo il potenziale residuo non ancora accaduto o non ancora pienamente prezzato
@@ -709,6 +714,7 @@ Chiudi sempre con:
 - research mode: full diligence / opacity-compressed
 - business quality: alta / media / bassa
 - necessità di esistenza del prodotto: alta / media / bassa / non dimostrata
+- necessità del token per il prodotto: alta / media / bassa / quasi nulla
 - token quality: alta / media / bassa
 - token accrual verdict: forte / medio / debole / quasi nullo / non dimostrabile
 - market setup: favorevole / neutro / fragile

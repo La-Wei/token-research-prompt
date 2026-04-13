@@ -411,14 +411,14 @@ Per evitare duplicazioni o omissioni, usa sempre questa mappa:
   - devi dire quali fonti hai usato o tentato se la copertura resta debole
 - `priorita direzionale`:
   - deve chiudersi in `8A. Directional symmetry test`
-  - e poi in `14. Decisione finale`
+  - e poi in `16. Decisione finale`
 - `framework probabilistico`:
-  - deve chiudersi in `12A. Probabilistic scenario map`
+  - deve chiudersi in `13. Probabilistic scenario map`
 - `trade activation test`:
   - deve usare il lato con `EV` migliore adesso come `lato candidato all attivazione`
-  - deve chiudersi in `12B. Trade activation test`
+  - deve chiudersi in `14. Trade activation test`
 - `stato tattico finale`:
-  - deve essere coerente tra `12B`, `13` e `14`
+  - deve essere coerente tra `14`, `15` e `16`
 
 STRUTTURA OBBLIGATORIA
 
@@ -604,7 +604,7 @@ Compila sempre.
 - stato del case: attivo / condizionale / watchlist / no-trade
 - condizione che trasformerebbe lo short in no trade
 
-12A. Probabilistic scenario map
+13. Probabilistic scenario map
 Costruisci una tabella mentale o scritta con almeno `3` scenari:
 - timeframe comune della scenario map
 - scenario `1`: nome breve
@@ -620,7 +620,7 @@ Chiudi la sezione con:
 - scenario piu pericoloso contro la tua view
 - lato con `EV` migliore adesso: long / short / nessuno
 
-12B. Trade activation test
+14. Trade activation test
 Compila sempre questa sezione prima del `no-trade test`.
 Rispondi in modo secco:
 - qual e il lato con `EV` migliore adesso / candidato all attivazione: long / short / nessuno
@@ -644,7 +644,7 @@ Chiudi sempre con:
 - motivo del lato candidato all attivazione
 - motivo principale della classificazione
 
-13. No-trade test
+15. No-trade test
 Rispondi in modo secco:
 - il setup e troppo sporco?
 - il risk/reward e insufficiente?
@@ -659,7 +659,7 @@ Regola di chiusura:
 - se un lato ha edge teorico ma manca ancora un trigger preciso o un invalidazione pulita, preferisci `watchlist`
 - usa `no-trade` solo se nessun lato resta davvero valido dopo costi, carry, execution e affidabilita del prezzo
 
-14. Decisione finale
+16. Decisione finale
 Chiudi sempre con:
 - verdict fondamentale ereditato: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente / non disponibile
 - stato evento/regime: pulito / rumor-driven / event-driven / structural-break risk
