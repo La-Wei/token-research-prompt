@@ -88,6 +88,17 @@ Crea una sezione “source reconciliation” con:
 Se una fonte giornalistica dice “tokens removed from circulation”, verifica se significa burn, treasury custody o semplice buyback.
 Output di LLM, Discord, Twitter, thread o articoli secondari non sono prove finali: usali solo come lead da verificare contro fonti primarie o definizioni metodologiche.
 
+7A. Opacity compression rule
+Se il protocollo e opaco, giovane, fortemente offchain o poco documentato, non riempire ogni sottosezione con varianti di `non trovato`.
+Quando waterfall, supply, treasury o holder base non si possono chiudere con rigore:
+- comprimi la parte in un blocco sintetico
+- esplicita:
+  - quali dati mancano
+  - quale inferenza resta bloccata
+  - perche il buco conta davvero
+  - come cambia la confidenza
+- privilegia l implicazione analitica rispetto alla ripetizione dell assenza del dato
+
 8. Claim audit
 Per ogni affermazione forte che impatta la tesi, soprattutto se molto bullish o molto bearish, esplicita:
 - claim esatta
@@ -388,6 +399,7 @@ Se i dati non bastano, non simulare precisione: dichiara i limiti informativi e 
 12. Sviluppi recenti e thesis-change events
 Analizza in modo obbligatorio gli ultimi `7d`, `30d` e `90d`.
 Non limitarti a un recap news.
+Questa sezione deve sintetizzare e aggiornare il controllo trasversale `12. Recent event audit`, non duplicarlo meccanicamente riga per riga.
 
 Controlla almeno, se rilevanti:
 - shock di prezzo o volume
@@ -531,6 +543,7 @@ Questo blocco non deve ribaltare artificialmente la tesi: deve testarne la robus
 
 19. Source reconciliation
 Compila questa sezione solo se emergono divergenze rilevanti tra fonti.
+Non ripetere il controllo trasversale `7. Source reconciliation`: qui riporta solo le divergenze residue che cambiano davvero la tesi o la confidenza.
 Per ciascuna divergenza rilevante indica:
 - metrica o dato
 - fonti in conflitto
@@ -578,6 +591,7 @@ Chiudi sempre con:
 - Se un dato chiave manca, dillo esplicitamente, spiega perché conta e abbassa la confidenza.
 - Se i numeri non bastano, dillo.
 - Se manca trasparenza su supply, unlock o treasury, consideralo un rischio.
+- Se l asset e troppo opaco per chiudere con rigore waterfall, supply o treasury, comprimi la sezione e alza il rischio analitico invece di moltiplicare `non trovato`.
 - Ragiona prima sul business, poi sul token, poi sul prezzo.
 - Cerca di distruggere la tesi prima di confermarla.
 - Evita bias da narrativa, bull market, brand e community.

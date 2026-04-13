@@ -11,6 +11,7 @@ capire quale sia la migliore espressione operativa adesso, distinguendo chiarame
 - view investment / HODL di lungo periodo
 - view spot / positional
 - setup tattico
+- stato di attivazione del setup
 - eseguibilita reale
 - priorita di ricerca direzionale derivata dal verdetto fondamentale
 - confronto simmetrico tra caso `long` e caso `short`
@@ -107,6 +108,28 @@ Questo significa:
   - perche il lato opposto ha edge migliore nonostante il fondamentale
 - se il lato prioritario e concettualmente giusto ma non ha trigger, timing o carry favorevole, la risposta corretta puo restare `no trade`
 - non dare automaticamente pari priorita operativa ai due lati solo per sembrare neutrale
+
+FORZA DELLA PRIORITA DIREZIONALE
+
+La priorita direzionale non deve essere sempre uguale in intensita.
+Classificala sempre come:
+- `forte`
+- `debole`
+- `nessuna`
+
+Guida pratica:
+- `forte` se:
+  - il verdetto fondamentale e direzionale (`sopravvalutato` o `sottovalutato`)
+  - la confidenza del giudizio strutturale e almeno `media`
+  - la copertura dati non e `insufficiente`
+  - non esiste un evento aperto che renda il tape ancora troppo dominato da shock non digerito
+- `debole` se:
+  - il verdetto e direzionale ma la confidenza e `bassa`
+  - oppure il regime e ancora molto `event-driven`
+  - oppure la copertura dati e solo `parziale` sui blocchi che contano per l execution
+- `nessuna` se:
+  - il verdetto fondamentale ereditato e `fairly priced`, `non disponibile` o `non analizzabile con rigore sufficiente`
+  - oppure la copertura dati e troppo debole per usare davvero il fondamentale come bussola operativa
 
 Input ideali:
 - output o sintesi del `prompt/token-research-prompt.md`, con almeno:
@@ -303,8 +326,13 @@ ORDINE DI LAVORO OBBLIGATORIO
   - `long`
   - `short`
   - `nessuna`
-10. Poi integra positioning, funding, OI, liquidita e squeeze risk.
-11. Solo dopo decidi qual e la migliore espressione per:
+10. Classifica anche la forza di quella priorita:
+  - `forte`
+  - `debole`
+  - `nessuna`
+11. Poi integra positioning, funding, OI, liquidita e squeeze risk.
+12. Esegui un `trade activation test` esplicito.
+13. Solo dopo decidi qual e la migliore espressione per:
   - `investment / HODL`
   - `spot / positional`
   - `swing long`
@@ -345,13 +373,15 @@ Chiudi con un mini verdict:
 - stato: chiuso / in evoluzione / non risolto
 
 2. Executive view
-Massimo 10 righe:
+Massimo 14 righe:
 - tesi fondamentale ereditata in 1-2 righe
 - coerenza o divergenza rispetto al setup attuale
 - investment view: bullish / bearish / neutral / non valutabile
 - tactical view: bullish / bearish / neutral
 - lato prioritario da cercare: long / short / nessuno
+- forza della priorita direzionale: forte / debole / nessuna
 - lato con edge maggiore adesso: long / short / nessuno
+- stato del setup tattico: attivo / condizionale / non attivo
 - perche il lato opposto non e preferito
 - migliore espressione investment: accumulate / HODL / avoid / non valutabile
 - migliore espressione tattica: spot accumulate / spot hold / swing long / swing short / no trade
@@ -438,6 +468,7 @@ Domande chiave:
 8A. Directional symmetry test
 Compila sempre questa sezione, anche se il risultato finale e `no trade`.
 - lato prioritario da cercare derivato dal fondamentale
+- forza della priorita direzionale
 - miglior caso `long` disponibile adesso
 - miglior caso `short` disponibile adesso
 - quale lato ha l asimmetria migliore
@@ -488,6 +519,7 @@ Compila sempre, anche se la conclusione e `non attivo adesso`:
 
 12A. Probabilistic scenario map
 Costruisci una tabella mentale o scritta con almeno `3` scenari:
+- timeframe comune della scenario map
 - scenario `1`: nome breve
 - probabilita stimata
 - trigger / condizione
@@ -500,6 +532,28 @@ Chiudi la sezione con:
 - scenario dominante
 - scenario piu pericoloso contro la tua view
 - lato con `EV` migliore adesso: long / short / nessuno
+
+12B. Trade activation test
+Compila sempre questa sezione prima del `no-trade test`.
+Rispondi in modo secco:
+- il lato prioritario ha un trigger attivo adesso?
+- l invalidazione e chiara e abbastanza vicina da rendere il trade disciplinabile?
+- il lato con `EV` migliore coincide con il lato prioritario oppure no?
+- l eseguibilita e almeno `media`?
+- spread, slippage, carry o squeeze risk stanno ancora sabotando il setup?
+- un evento aperto impedisce ancora di trattare il prezzo come base affidabile?
+
+Regola di chiusura:
+- se il trigger e `attivo`
+- e l invalidazione e chiara
+- e il lato con `EV` migliore e definito
+- e l eseguibilita e almeno `media`
+- e non c e un blocker straordinario da evento / carry / venue
+allora non chiudere con un `no trade` vago: devi classificare il setup come `attivo`.
+
+Chiudi sempre con:
+- stato del setup tattico: attivo / condizionale / non attivo
+- motivo principale della classificazione
 
 13. No-trade test
 Rispondi in modo secco:
@@ -520,7 +574,9 @@ Chiudi sempre con:
 - bias 1D: bullish / bearish / neutral / non valutabile
 - bias operativo: bullish / bearish / neutral
 - lato prioritario da cercare: long / short / nessuno
+- forza della priorita direzionale: forte / debole / nessuna
 - lato con edge maggiore adesso: long / short / nessuno
+- stato del setup tattico: attivo / condizionale / non attivo
 - migliore espressione investment: accumulate / HODL / avoid / non valutabile
 - migliore espressione tattica: spot accumulate / spot hold / swing long / swing short / no trade
 - scenario dominante con probabilita stimata
@@ -544,10 +600,13 @@ REGOLE FINALI
 - Dai pari rigore analitico a long e short, ma non pari priorita operativa quando il fondamentale fornisce una direzione strutturale forte.
 - Se il fondamentale e fortemente `sopravvalutato`, cerca prima setup short e tratta i long come continuation / squeeze tattico finche non dimostrano edge superiore.
 - Se il fondamentale e fortemente `sottovalutato`, cerca prima setup long e tratta gli short come washout / mean-reversion tattica finche non dimostrano edge superiore.
+- Se la priorita direzionale e solo `debole`, trattala come bussola secondaria e non come comando operativo.
 - Un asset `sopravvalutato` non va protetto artificialmente dallo short: se il lato short ha edge, va detto chiaramente.
 - Un asset `sottovalutato` non va protetto artificialmente dal long: se il lato long ha edge, va detto chiaramente.
 - Preferisci il lato con migliore asimmetria `probabilita x payoff x eseguibilita`, non il lato narrativamente piu comodo.
 - Se long e short hanno edge simile o mediocre, concludi `no trade`.
+- Se il `trade activation test` passa, non restare nel vago: classifica il setup come `attivo`.
+- Se il lato prioritario ha struttura valida ma trigger non ancora attivo, classificalo come `condizionale`, non come `attivo`.
 - Non lasciare che il bias fondamentale sovrascriva il chart.
 - Non lasciare che il chart di breve periodo sovrascriva il contesto HTF senza prova sufficiente.
 - Usa il prompt fondamentale come contesto ereditato, non come qualcosa da riscrivere da zero.
