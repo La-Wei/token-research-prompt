@@ -173,7 +173,7 @@ TASSONOMIA TIMEFRAME OBBLIGATORIA
 
 Non usare `HTF` come parola ombrello se questo rende ambigua la lettura.
 Separa sempre:
-- `secular / investment context`: massimo storico disponibile, poi `1Y`, `6M`, `3M` e `monthly candle`, se disponibile
+- `investment / long-term context`: massimo storico disponibile, poi `1Y`, `6M`, `3M` e `monthly candle`, se disponibile
 - `higher timeframe directional`: 1W e 1D
 - `mid timeframe`: 4H
 - `execution timeframe`: 1H e 15m
@@ -184,12 +184,21 @@ Se l asset e abbastanza maturo da avere storico lungo, non fermarti a `7d`, `30d
 Per asset come `BTC`, `ETH`, `SOL`, `AAVE`, `UNI` o altri nomi con anni di storia, la lettura investment deve guardare indietro abbastanza da coprire piu regimi di mercato, non solo il mese corrente.
 Un bias `1W bullish` puo convivere con un `1D iper-esteso` e con un `bias operativo neutral`.
 Nel verdetto finale specifica sempre almeno:
-- `bias secular / investment`
+- `bias investment / long-term`
 - `bias 1W`
 - `bias 1D`
 - `bias operativo`
 - `orizzonte holding implicito`
 Se il massimo timeframe disponibile e troppo corto per una lettura multi-year, dichiaralo esplicitamente e abbassa la confidenza sul caso `HODL`.
+Il `bias investment / long-term` non descrive semplicemente se il chart `max` e salito o sceso: descrive la qualita direzionale della tesi `multi-quarter / multi-year`.
+Non descrive il timing di entrata di oggi. Quel lavoro spetta a `migliore espressione investment`, `bias 1W / 1D` e `bias operativo`.
+Quindi puo divergere da chart brutti o da fair value tatticamente scomodi. Esempio: `BTC` puo avere `bias investment / long-term bullish` anche in pieno bear market, con `1W bearish`, `1D bearish` e migliore espressione `accumulate on major pullbacks` oppure `HODL if already in`.
+Usa `bullish` solo se esiste un caso strutturale forte per voler detenere l asset attraverso un ciclo, nonostante drawdown, volatilita o fasi di bear market.
+Usa `bearish` se il token non merita esposizione strutturale `multi-quarter / multi-year`, per debolezza economica, cattiva accrual, struttura tossica di supply, deterioramento del business o valutazione che annulla il caso investment in modo persistente.
+Usa `neutral` quando la tesi strutturale esiste ma e mista, incompleta o troppo bilanciata per una view direzionale forte.
+Usa `non disponibile` se dati, storico o affidabilita delle fonti non bastano davvero per una view `investment / long-term`.
+Non usare `avoid` come scorciatoia automatica per rendere il bias `bearish`: `avoid` riguarda l azione migliore adesso; il bias riguarda la tesi strutturale.
+Se la tesi long-term resta forte ma il prezzo attuale non offre nuovo edge, preferisci `accumulate on major pullbacks` o `HODL if already in` invece di usare `avoid` in modo ambiguo.
 
 EVENT E REGIME DISCOVERY OBBLIGATORIA
 
@@ -232,11 +241,11 @@ Ordine di priorita consigliato:
 - dashboard di mercato terze solo come fallback
 
 Cerca sempre, se disponibile:
-- `max history` per il contesto secolare / investment
+- `max history` per il contesto investment / long-term
 - `1Y`
 - `6M`
 - `3M`
-- `monthly candle` per il contesto secolare / investment
+- `monthly candle` per il contesto investment / long-term
 - `1W` per il bias alto
 - `1D` per il directional context
 - `4H` per la struttura intermedia
@@ -353,9 +362,9 @@ REGOLE DI RIGORE
   - timing operativo
 - Specifica sempre in quale timeframe vive la tesi.
 - Specifica sempre cosa invalida la tesi sul timeframe rilevante.
-- Non usare una frase tipo `bias HTF: bullish` se in realta stai comprimendo segnali diversi tra `monthly / secular`, `1W` e `1D`.
+- Non usare una frase tipo `bias HTF: bullish` se in realta stai comprimendo segnali diversi tra `investment / long-term`, `1W` e `1D`.
 - Se i timeframe alti divergono, esplicitalo. Esempio corretto:
-  - `bias secular bullish`
+  - `bias investment / long-term bullish`
   - `1W bullish`
   - `1D bullish ma iper-esteso`
   - `operativo neutral`
@@ -375,7 +384,7 @@ ORDINE DI LAVORO OBBLIGATORIO
 2. Leggi il report di verifica, se disponibile, e preferiscilo in caso di conflitto.
 3. Verifica gli eventi recenti e stabilisci se il mercato sta reagendo a un `event shock` ancora aperto.
 4. Se i chart non sono gia forniti, fai source discovery e recupera prima lo storico lungo disponibile: `max / 1Y / 6M / 3M / monthly candle`, poi `1W / 1D / 4H / 1H / 15m`.
-5. Leggi prima il contesto `secular / investment`, se i dati lo permettono.
+5. Leggi prima il contesto `investment / long-term`, se i dati lo permettono.
 6. Leggi poi `1W / 1D`.
 7. Verifica allineamento o conflitto sul `4H`.
 8. Solo alla fine valuta il timing su `1H / 15m`, se serve.
@@ -406,6 +415,10 @@ Per evitare duplicazioni o omissioni, usa sempre questa mappa:
 - `event e regime discovery`:
   - serve come metodo di lavoro
   - deve emergere nella sezione `1. Recent event e regime evidence log`
+- `executive view`:
+  - e una preview provvisoria della sintesi
+  - non deve introdurre nuovo ragionamento o nuovi claim
+  - se cambia rispetto alla chiusura finale, la differenza va spiegata con il blocco che ha aggiornato la view
 - `source discovery`:
   - deve emergere nella sezione `0. Market status`
   - devi dire quali fonti hai usato o tentato se la copertura resta debole
@@ -419,6 +432,10 @@ Per evitare duplicazioni o omissioni, usa sempre questa mappa:
   - deve chiudersi in `14. Trade activation test`
 - `stato tattico finale`:
   - deve essere coerente tra `14`, `15` e `16`
+- `decisione finale`:
+  - deve comprimere outputs gia chiusi nelle sezioni precedenti
+  - non deve ricalcolare da zero `investment`, `tactical`, `long` o `short` case
+  - ogni campo finale deve essere tracciabile a una sezione specifica
 
 STRUTTURA OBBLIGATORIA
 
@@ -458,6 +475,7 @@ Chiudi con un mini verdict:
 
 2. Executive view
 Massimo 16 righe:
+Questa sezione e una preview provvisoria, non un secondo verdetto finale.
 - tesi fondamentale ereditata in 1-2 righe
 - coerenza o divergenza rispetto al setup attuale
 - investment view: bullish / bearish / neutral / non valutabile
@@ -467,7 +485,7 @@ Massimo 16 righe:
 - lato con edge maggiore adesso: long / short / nessuno
 - stato del setup tattico: attivo / condizionale / watchlist / no-trade
 - perche il lato opposto non e preferito
-- migliore espressione investment: accumulate / HODL / avoid / non valutabile
+- migliore espressione investment: accumulate now / accumulate on major pullbacks / HODL if already in / avoid / non valutabile
 - migliore espressione tattica: spot accumulate / spot hold / swing long / swing short / no trade
 - scenario dominante con probabilita stimata
 - timeframe dominante della view
@@ -475,7 +493,7 @@ Massimo 16 righe:
 - rischio principale contro la view
 - grado di eseguibilita
 
-3. Secular / investment context
+3. Investment / long-term context
 Analizza prima il massimo storico disponibile:
 - `max`, se disponibile
 - `1Y`
@@ -489,7 +507,7 @@ Se questi timeframe non sono disponibili, dichiaralo esplicitamente e non forzar
 - cosa supporta o smentisce un caso `HODL multi-quarter / multi-year`
 - cosa invalida la tesi investment
 Chiudi sempre con:
-- bias `secular / investment`
+- bias `investment / long-term`
 - confidenza del caso investment: alta / media / bassa
 
 4. Higher timeframe context
@@ -661,9 +679,20 @@ Regola di chiusura:
 
 16. Decisione finale
 Chiudi sempre con:
+- Questa sezione non introduce materiale nuovo: chiude in forma atomica cio che hai gia deciso nelle sezioni precedenti.
+- Mappa minima di derivazione:
+  - `stato evento/regime` <- `1`
+  - `bias investment / long-term` <- `3`
+  - `bias 1W` e `bias 1D` <- `4`
+  - `bias operativo` <- `5`, `6`, `7`, `8`
+  - `lato prioritario da cercare` e forza <- `8A`
+  - `migliore espressione investment` <- `9`
+  - `migliore espressione tattica` <- `11`, `12`, `14`, `15`
+  - `scenario dominante` <- `13`
+- Se la `Executive view` diverge dal finale, il `motivo principale del verdetto` deve dire quale sezione ha cambiato davvero la lettura.
 - verdict fondamentale ereditato: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente / non disponibile
 - stato evento/regime: pulito / rumor-driven / event-driven / structural-break risk
-- bias secular / investment: bullish / bearish / neutral / non disponibile
+- bias investment / long-term: bullish / bearish / neutral / non disponibile
 - bias 1W: bullish / bearish / neutral / non valutabile
 - bias 1D: bullish / bearish / neutral / non valutabile
 - bias operativo: bullish / bearish / neutral
@@ -672,12 +701,12 @@ Chiudi sempre con:
 - lato con edge maggiore adesso: long / short / nessuno
 - lato candidato all attivazione: long / short / nessuno
 - stato del setup tattico: attivo / condizionale / watchlist / no-trade
-- migliore espressione investment: accumulate / HODL / avoid / non valutabile
+- migliore espressione investment: accumulate now / accumulate on major pullbacks / HODL if already in / avoid / non valutabile
 - migliore espressione tattica: spot accumulate / spot hold / swing long / swing short / no trade
 - scenario dominante con probabilita stimata
 - timeframe dominante della tesi
 - orizzonte holding implicito: intraday / swing multi-day / swing multi-week / positional multi-month / investment multi-quarter / multi-year
-- coerenza con la tesi fondamentale: alta / media / bassa / non valutabile
+- coerenza con la tesi fondamentale: coerente / parzialmente coerente / in conflitto / non valutabile
 - conviction: alta / media / bassa
 - eseguibilita: alta / media / bassa
 - invalidation della tesi
@@ -687,10 +716,10 @@ Chiudi sempre con:
 
 REGOLE FINALI
 
-- Un asset bullish di fondo puo restare `no trade`.
-- Un asset bullish di fondo puo essere `spot accumulate` ma non `swing long`.
-- Un asset bearish di fondo puo restare `no trade`.
-- Un asset bearish di fondo puo offrire uno short tattico.
+- Un asset con `bias investment / long-term bullish` puo restare `no trade`.
+- Un asset con `bias investment / long-term bullish` puo essere `spot accumulate` ma non `swing long`.
+- Un asset con `bias investment / long-term bearish` puo restare `no trade`.
+- Un asset con `bias investment / long-term bearish` puo offrire uno short tattico.
 - Un asset debole puo offrire un long di rimbalzo, ma chiamalo per quello che e.
 - Dai pari rigore analitico a long e short, ma non pari priorita operativa quando il fondamentale fornisce una direzione strutturale forte.
 - Se il fondamentale e fortemente `sopravvalutato`, cerca prima setup short e tratta i long come continuation / squeeze tattico finche non dimostrano edge superiore.

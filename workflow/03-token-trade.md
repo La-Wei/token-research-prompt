@@ -14,7 +14,7 @@ Obiettivo operativo:
 - non rifare da zero business quality, token quality, tokenomics, unlock analysis o right-to-exist test
 - fai source discovery per chart, timeframe, liquidita, OI, funding e positioning se non ti vengono forniti
 - separa sempre:
-  - `bias secular / investment`
+  - `bias investment / long-term`
   - `bias 1W`
   - `bias 1D`
   - `bias operativo`

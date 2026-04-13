@@ -711,6 +711,18 @@ Concludi con:
 
 21. Conclusione netta
 Chiudi sempre con:
+- Questa sezione non introduce nuove claim o nuove inferenze: comprime il lavoro gia chiuso nelle sezioni precedenti.
+- Mappa minima di derivazione:
+  - `business quality` <- `3`
+  - `necessità di esistenza del prodotto` <- `2`
+  - `necessità del token per il prodotto` <- `4`, `5`
+  - `token quality` <- `6`, `7`
+  - `token accrual verdict` <- `7A`
+  - `market setup` <- `12`, `16`, `17`
+  - `regime eventi recente` <- `CT-12`
+  - `verdict` <- `16`, `17`, `18`, `18A`, `19`
+  - `divergenze residue di fonti` <- `19`
+- Il `motivo principale del giudizio` deve isolare il tradeoff decisivo che spiega il `verdict`, non ricopiare in miniatura bull case, bear case e scenario map.
 - research mode: full diligence / opacity-compressed
 - business quality: alta / media / bassa
 - necessità di esistenza del prodotto: alta / media / bassa / non dimostrata
