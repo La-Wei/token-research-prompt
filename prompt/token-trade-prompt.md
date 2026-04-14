@@ -95,6 +95,23 @@ PRIORITA DIREZIONALE DERIVATA DAL VERDETTO
 
 Il verdetto fondamentale non decide da solo l entry, ma deve orientare dove cerchi l edge per primo.
 
+Interpretazione obbligatoria del verdetto ereditato:
+- `sottovalutato`:
+  - il prezzo fondamentale sta materialmente sotto il corridoio `base case` della tesi strutturale, con tesi ancora intatta
+- `fairly priced`:
+  - il prezzo fondamentale sta dentro il corridoio `base case` oppure abbastanza vicino da non giustificare una chiamata strutturale forte
+- `sopravvalutato`:
+  - il prezzo fondamentale sta materialmente sopra il corridoio `base case` oppure prezza gia troppo bull case
+
+Chiarimento importante:
+- `fairly priced` non significa:
+  - asset brutto
+  - asset non accumulabile mai
+  - lato long vietato
+- significa solo:
+  - nessuna priorita direzionale strutturale forte al prezzo corrente
+- il timing operativo puo comunque preferire long, short, watchlist o no-trade a seconda del chart e dell execution
+
 Regola base:
 - se il verdetto fondamentale ereditato e `sopravvalutato`, il lato prioritario da cercare e `short`
 - se il verdetto fondamentale ereditato e `sottovalutato`, il lato prioritario da cercare e `long`
@@ -234,11 +251,21 @@ Prima di dichiarare i timeframe "insufficienti", cerca attivamente fonti affidab
 
 Ordine di priorita consigliato:
 - API o chart ufficiali del protocollo / exchange principale
+  - esempi spot: `Binance Spot`, `Kraken Spot`, `Coinbase Exchange`, `Bitget Spot`
 - API o chart ufficiali del venue derivato piu liquido, se diverso dal venue spot
+  - esempi perp / derivati: `Binance Futures`, `Bitget Futures`, `Hyperliquid`, `Kraken Perp`
 - TradingView
 - CoinMarketCap
 - CoinGecko
 - dashboard di mercato terze solo come fallback
+
+Per asset liquidi o major:
+- prova prima API o chart ufficiali delle principali venue spot e perp, non solo dashboard aggregate
+- identifica sempre uno `spot anchor principale` e, se usi derivati, uno `perp anchor principale`
+- salva sempre il timestamp dello snapshot usato per prezzo, `OI`, funding e livelli
+- se uno spot aggregato diverge materialmente dal venue spot primario, non usare il dato aggregato per trigger e livelli operativi
+- usa idealmente sia `CoinMarketCap` sia `CoinGecko` come cross-check fra dashboard aggregate quando disponibili
+- usa `CoinMarketCap` e `CoinGecko` soprattutto per venue mix, market cap cross-check, historical context e sanity check, non come sostituto degli `OHLC` primari
 
 Cerca sempre, se disponibile:
 - `max history` per il contesto investment / long-term
@@ -261,7 +288,12 @@ Se il token tratta spot su una venue e perp su un altra, puoi usare entrambe, ma
 - quale fonte descrive lo spot
 - quale fonte descrive il perp / positioning
 
+Per `BTC`, `ETH`, `SOL` e altri nomi molto liquidi, non e accettabile dichiarare `copertura dati insufficiente` sul timing senza aver prima tentato almeno una venue/API spot primaria e una venue/API perp primaria, se esistono.
+Per questi asset, citare in modo esplicito le venue tentate e preferire nomi concreti come `Binance`, `Kraken`, `Coinbase`, `Bitget`, `Hyperliquid` quando rilevanti, invece di descrizioni vaghe tipo solo `exchange principale`.
+
 Se esiste una fonte che offre OHLC reali multi timeframe, non accontentarti di proxy tipo solo `7d`, `30d` o range aggregati.
+Non usare `CoinGecko` / `CoinMarketCap` range `24h / 7d / 30d` come surrogato di `1W / 1D / 4H / 1H / 15m` per derivare livelli operativi.
+Se i timeframe bassi non sono disponibili in modo primario, puoi ancora chiudere il contesto strutturale, ma i trigger e le invalidazioni devono restare `non definibili con rigore sufficiente` invece di diventare pseudo-livelli numerici.
 Puoi concludere `copertura dati insufficiente` solo dopo aver esplicitato:
 - quali fonti hai provato
 - quali timeframe sei riuscito a ottenere
@@ -347,6 +379,7 @@ REGOLE DI RIGORE
 - Non inventare livelli, pattern o dati non visibili nei chart forniti.
 - Se i chart sono incompleti, vecchi o poco leggibili, dillo chiaramente.
 - Non e ammissibile fermarsi a proxy aggregati se esistono chart o API ragionevolmente accessibili con OHLC reali multi-timeframe.
+- Se lo `spot anchor` di una dashboard aggregata diverge materialmente da una venue primaria, usa la venue primaria per execution e tratta la divergenza come dato da riconciliare.
 - Se mancano dati su OI, funding, borrow, liquidita o liquidazioni, non fingere precisione.
 - Non trattare un dump o squeeze da governance shock, exploit o delisting fear come semplice `healthy pullback` o `breakout` senza verificare prima l evento.
 - Distingui sempre tra:
@@ -444,6 +477,8 @@ STRUTTURA OBBLIGATORIA
 - copertura dati: completa / parziale / insufficiente
 - fonti principali usate
 - fonti tentate ma non ottenute, se rilevanti
+- `spot anchor principale` usato + timestamp
+- `perp anchor principale` usato + timestamp, se rilevante
 - timeframe disponibili
 - profondita storica disponibile: max / 1Y / 6M / 3M / monthly candle / 1W o equivalente
 - report fondamentale disponibile: si / no
@@ -451,6 +486,7 @@ STRUTTURA OBBLIGATORIA
 - qualita del contesto ereditato: alta / media / bassa
 - principali buchi informativi
 - blocchi ancora non osservabili
+- note di riconciliazione se le fonti market divergono materialmente
 - confidenza preliminare: alta / media / bassa
 
 1. Recent event e regime evidence log
@@ -727,6 +763,12 @@ REGOLE FINALI
 - Se la priorita direzionale e solo `debole`, trattala come bussola secondaria e non come comando operativo.
 - Un asset `sopravvalutato` non va protetto artificialmente dallo short: se il lato short ha edge, va detto chiaramente.
 - Un asset `sottovalutato` non va protetto artificialmente dal long: se il lato long ha edge, va detto chiaramente.
+- Un asset `fairly priced` puo comunque essere:
+  - `accumulate on pullbacks`
+  - `hold if already in`
+  - `watchlist long`
+  - `no trade`
+  a seconda di struttura, execution e prezzo locale.
 - Preferisci il lato con migliore asimmetria `probabilita x payoff x eseguibilita`, non il lato narrativamente piu comodo.
 - Se long e short hanno edge simile o mediocre, concludi `no trade`.
 - Se il `trade activation test` passa, non restare nel vago: classifica il setup come `attivo`.

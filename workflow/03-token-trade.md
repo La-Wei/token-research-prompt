@@ -13,6 +13,9 @@ Obiettivo operativo:
 - se il file di verifica segnala `evento materiale`, `shock di governance`, `exploit`, `delisting risk` o `structural break possibile`, portalo dentro il bias operativo prima di leggere il chart come se nulla fosse
 - non rifare da zero business quality, token quality, tokenomics, unlock analysis o right-to-exist test
 - fai source discovery per chart, timeframe, liquidita, OI, funding e positioning se non ti vengono forniti
+- per asset liquidi o major, fai prima source discovery su venue/API primarie spot e perp e usa da li `spot anchor`, `OHLC` e microstructure
+- non costruire trigger o livelli da range aggregati `7d / 30d` di dashboard se esistono `OHLC` reali ragionevolmente accessibili
+- se non ottieni `OHLC` primari su `4H / 1H / 15m`, abbassa la confidenza sul timing e non fingere precisione numerica su trigger, invalidazione o microstruttura
 - separa sempre:
   - `bias investment / long-term`
   - `bias 1W`

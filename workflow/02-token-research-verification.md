@@ -10,6 +10,8 @@ Obiettivo operativo:
 - crea `output/[SLUG-PROGETTO]-[TICKER-LOWER]-[YYYY-MM-DD]-test/token-research-[SLUG-PROGETTO]-[TICKER-LOWER]-verification.md`
 - usa fonti primarie, docs ufficiali e dashboard metodologicamente chiare
 - verifica claim strutturali, waterfall, supply, unlock, treasury, metriche live, eventi recenti, `token accrual verdict`, `source reconciliation` residua e verdetto finale
+- verifica sempre che `spot price` e `market cap` del report originale siano coerenti con uno snapshot `same-day` e con almeno una fonte spot primaria per asset liquidi; se il report miscela tick live, close `EOD` e range aggregati, segnalalo come errore materiale
+- se le dashboard divergono materialmente, preferisci venue/API spot primaria per il prezzo, `CoinGlass` per derivati e dashboard aggregate tipo `CoinGecko` / `CoinMarketCap` per contesto storico e venue mix
 - verifica sempre gli ultimi `7d`, `30d` e `90d`, se rilevanti, per:
   - governance dispute
   - founder / team departure

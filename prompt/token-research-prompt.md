@@ -71,8 +71,49 @@ Per ogni numero importante specifica:
 - unità di misura: USD, token nativo o altro
 Non confrontare market cap attuale con fees, revenue o multipli di periodi non comparabili senza dirlo esplicitamente.
 
+6A. Market snapshot anchoring
+Per ogni numero di `spot price` o `market cap` che entra in valuation, scenario map o verdict finale, specifica sempre:
+- fonte anchor principale
+- timestamp dello snapshot
+- se il dato e `live spot`, `EOD`, media o range aggregato
+- se il `market cap` e same-timestamp oppure derivato da `price x circulating supply`
+
+Per asset liquidi o major:
+- non basta una dashboard aggregata se esiste una venue/API spot primaria ragionevolmente accessibile
+- cross-checka sempre lo spot con almeno una venue/API primaria o fonte spot equivalente
+- se `CoinGecko`, `CoinMarketCap`, `CoinGlass` o altra dashboard divergono materialmente dal live spot della venue, non quotare la dashboard come verita finale
+- usa il `source reconciliation evidence log` per spiegare la divergenza
+
+Ordine pratico consigliato per `spot price / market cap` su asset liquidi o major:
+- venue/API spot primarie:
+  - `Binance Spot`
+  - `Kraken Spot`
+  - `Coinbase Exchange`
+  - `Bitget Spot`
+  - altra venue spot primaria effettivamente dominante sul pair
+- venue/API perp o derivati per `OI`, funding, basis, liquidazioni e positioning:
+  - `Binance Futures`
+  - `Bitget Futures`
+  - `Hyperliquid`
+  - `Kraken Perp`
+  - altra venue derivata primaria effettivamente dominante
+- dashboard aggregate per cross-check, venue mix, historical context e metriche secondarie:
+  - `CoinMarketCap`
+  - `CoinGecko`
+  - `CoinGlass` soprattutto per derivati e market structure, non come verita spot finale se diverge
+
+Regola pratica:
+- usa idealmente sia `CoinMarketCap` sia `CoinGecko` come cross-check fra dashboard aggregate quando disponibili
+- ma per il prezzo finale prevale sempre una venue/API spot primaria o un anchor equivalente meglio riconciliato
+
+Non mischiare come se fossero lo stesso snapshot:
+- tick live
+- close `EOD`
+- range `24h / 7d / 30d`
+- market cap catturati in momenti diversi
+
 7. Source reconciliation discipline
-Se docs, governance, DeFiLlama, CoinGecko, Tokenomist, Dune, articoli giornalistici o dashboard del protocollo non coincidono, non scegliere subito una narrativa.
+Se docs, governance, DeFiLlama, `CoinMarketCap`, CoinGecko, Tokenomist, Dune, articoli giornalistici o dashboard del protocollo non coincidono, non scegliere subito una narrativa.
 Crea un blocco `source reconciliation evidence log` con:
 - dato
 - fonte
@@ -221,9 +262,9 @@ Per evitare duplicazioni o omissioni, usa sempre questa mappa:
 - controlli `1-5`:
   - devono emergere nelle sezioni `4`, `5`, `6`, `7`
   - e devono chiudersi esplicitamente in `7A. Token accrual e net supply verdict`
-- controllo `6. Time anchoring e normalization`:
+- controlli `6 / 6A. Time anchoring, normalization e market snapshot anchoring`:
   - si applica a qualunque sezione con numeri
-  - soprattutto `3`, `4`, `6`, `16`, `17`
+  - soprattutto `3`, `4`, `6`, `16`, `17`, `19`, `21`
 - controllo `7. Source reconciliation discipline`:
   - funziona come evidence log metodologico durante l analisi
   - la sezione finale `19. Residual source divergences` deve riportare solo divergenze residue che cambiano verdict o confidenza
@@ -636,6 +677,17 @@ Analizza:
 - usa multipli temporalmente coerenti: market cap attuale contro metriche attuali o chiaramente normalizzate
 - non usare multipli se il perimetro della metrica non e riconciliato con abbastanza rigore
 
+Regola metodologica obbligatoria:
+- se il token non ha un anchor pulito da `holder cash flow`, non forzare una lettura tipo equity e non usare questo come scusa per atterrare automaticamente su `fairly priced`
+- in questi casi costruisci comunque una lettura di prezzo disciplinata usando:
+  - storico del token in regimi diversi
+  - pricing relativo vs competitor comparabili
+  - ruolo monetario / collateral / reserve premium, se rilevante
+  - scenario map della sezione `17`
+  - stato di adozione e qualita della tesi rispetto al prezzo corrente
+- l obiettivo non e ottenere un fair value finto al dollaro
+- l obiettivo e capire se il prezzo corrente sta sotto, dentro o sopra il range coerente con la tesi base
+
 Domande chiave:
 - il mercato sta prezzando crescita ragionevole o euforia?
 - il multiplo è giustificato dalla qualità dei ricavi?
@@ -645,6 +697,7 @@ Domande chiave:
 Questa sezione deve tradurre la tesi in mappe numeriche.
 Non ripetere qui in dettaglio milestone narrative gia spiegate nel `Bull case`.
 Calcola cosa significherebbe:
+- scenario `base case` coerente con la tesi centrale, non solo bull e bear
 - ritorno all’ATH
 - ritorno a market cap / FDV coerenti con competitor comparabili
 - rerating a multipli superiori di settore
@@ -657,6 +710,61 @@ Per ogni scenario specifica:
 - FDV
 - assunzioni implicite
 - probabilità qualitativa
+
+Chiudi sempre la sezione con un blocco `price placement`:
+- `spot anchor` usato per il placement: fonte + timestamp
+- prezzo attuale / market cap attuale
+- corridoio `base case` ragionevole: `lower bound / mid / upper bound`
+- dove cade il prezzo attuale rispetto a quel corridoio:
+  - sotto il corridoio
+  - dentro la parte bassa
+  - circa al centro
+  - dentro la parte alta
+  - sopra il corridoio
+- se il prezzo sta gia prezzando:
+  - solo il base case
+  - parte del bull case
+  - molto del bull case
+  - piu del bull case ragionevole
+
+17A. Verdict calibration bridge
+Questa sezione e obbligatoria.
+Serve a trasformare `16-17` in un verdetto di prezzo disciplinato invece di usare `fairly priced` come categoria di default.
+
+Rispondi in modo secco:
+- qual e il `base case` centrale che stai usando davvero
+- qual e il corridoio di prezzo coerente con quel `base case`
+- quanto il prezzo attuale dista da quel corridoio in modo materialmente rilevante oppure no
+- se la tesi e intatta, deteriorata o gia troppo prezzata al prezzo corrente
+
+Classificazione obbligatoria del verdetto:
+- `sottovalutato` se:
+  - il prezzo corrente sta in modo materialmente sotto la parte bassa del corridoio `base case`
+  - e la tesi centrale non e rotta
+  - e il mercato non sta solo reagendo a un `structural break` ancora aperto
+- `fairly priced` se:
+  - il prezzo corrente sta dentro il corridoio `base case`
+  - oppure abbastanza vicino da non giustificare una chiamata direzionale strutturale forte
+- `sopravvalutato` se:
+  - il prezzo corrente sta in modo materialmente sopra la parte alta del corridoio `base case`
+  - oppure sta gia prezzando una parte troppo ampia del bull case
+- `non analizzabile con rigore sufficiente` se:
+  - non riesci a costruire un corridoio minimamente serio per buchi di dati o tesi troppo opaca
+
+Regole dure:
+- non richiedere per forza una cheapness da `DCF / equity` per usare `sottovalutato`
+- non usare `fairly priced` come sinonimo di:
+  - `asset di alta qualita`
+  - `mi piace ma non so fare timing`
+  - `accumulerei solo piu in basso`
+- `fairly priced` significa solo:
+  - prezzo attuale dentro il range centrale coerente con la tesi base allo snapshot usato
+- usa tolleranza di buon senso coerente con volatilita e confidenza:
+  - non promuovere o declassare il verdetto per scarti banali di pochi punti percentuali
+- se il prezzo sta nella parte bassa del corridoio ma non abbastanza da chiamarlo `sottovalutato`, dillo esplicitamente:
+  - `fairly priced, ma vicino alla parte bassa del range`
+- se il prezzo sta nella parte alta del corridoio ma non abbastanza da chiamarlo `sopravvalutato`, dillo esplicitamente:
+  - `fairly priced, ma vicino alla parte alta del range`
 
 18. Mispricing test
 Questa sezione deve essere una sintesi secca dell errore di pricing.
@@ -720,7 +828,7 @@ Chiudi sempre con:
   - `token accrual verdict` <- `7A`
   - `market setup` <- `12`, `16`, `17`
   - `regime eventi recente` <- `CT-12`
-  - `verdict` <- `16`, `17`, `18`, `18A`, `19`
+  - `verdict` <- `16`, `17`, `17A`, `18`, `18A`, `19`
   - `divergenze residue di fonti` <- `19`
 - Il `motivo principale del giudizio` deve isolare il tradeoff decisivo che spiega il `verdict`, non ricopiare in miniatura bull case, bear case e scenario map.
 - research mode: full diligence / opacity-compressed
@@ -771,6 +879,12 @@ Chiudi sempre con:
 - Se non puoi dimostrare il meccanismo, non usare parole come “deflattivo”, “supply shock”, “mangiano l’offerta” o equivalenti.
 - Se una metrica diverge da un’altra, verifica prima definizioni e perimetro, poi concludi.
 - Non confrontare market cap, FDV e multipli attuali con metriche economiche di periodi incompatibili senza normalizzazione o nota esplicita.
+- Per asset liquidi o major, non usare un range aggregato o uno snippet di dashboard come anchor spot finale se una venue/API primaria dice altro in modo materiale.
+- Se il prezzo usato in `17. Price map e scenario map` contraddice i range citati nello stesso report, il dato non e riconciliato e va corretto prima del verdict.
+- Non usare `fairly priced` come categoria rifugio solo perche il token non ha cash flow holder-level pulito.
+- Se il prezzo sta materialmente sotto il tuo `base case corridor` e la tesi resta intatta, devi essere disposto a dire `sottovalutato`.
+- Se il prezzo sta materialmente sopra il tuo `base case corridor` o prezza gia troppo bull case, devi essere disposto a dire `sopravvalutato`.
+- Non usare il verdetto di prezzo per esprimere il timing operativo di oggi: quel lavoro spetta al prompt trade.
 - Per ogni claim forte, chiarisci sempre cosa è dimostrato, cosa è solo suggerito e cosa resta non dimostrato.
 - Se mancano fonti primarie o dati sufficienti per una conclusione seria, dichiara il token non analizzabile con rigore sufficiente.
 - Se esistono eventi materiali negli ultimi `30d`, dedica sempre loro una sezione separata e non nasconderli dentro `catalizzatori` o `bear case`.
