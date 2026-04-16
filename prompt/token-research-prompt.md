@@ -278,6 +278,10 @@ Per evitare duplicazioni o omissioni, usa sempre questa mappa:
   - e va richiamato in `21. Conclusione netta`
 - controllo `11. Necessity of existence test`:
   - si chiude in `2. Che cosa fa davvero il protocollo`
+- founder / team / trust surface:
+  - si chiude in `11A. Founder, team e trust surface`
+  - e va richiamato in `21. Conclusione netta`
+  - puo peggiorare `business quality`, `token quality` o `market setup` anche senza un nuovo evento materiale
 - controlli `CT-12 / CT-13`:
   - il prefisso `CT-` li distingue dalle sezioni strutturali `12` e `13`
   - il `Recent event evidence log` serve come log metodologico dei fatti
@@ -349,6 +353,7 @@ Compila questa sezione solo se la modalita e `opacity-compressed`.
 - non ripetere gli stessi buchi informativi gia dichiarati in `0. Research mode e perimetro evidenze`
 - dopo il ramo `2A`, continua comunque con:
   - `7A. Token accrual e net supply verdict`
+  - `11A. Founder, team e trust surface`
   - `12-21`
 
 Template minimo:
@@ -569,6 +574,42 @@ Compila questa sezione solo se la modalita e `full diligence`.
 - Gli holder sono allineati di lungo periodo o opportunisti.
 - Esiste una base di holder forte o solo floating speculativo.
 - I maggiori holder sono asset strategici o futuri seller.
+
+11A. Founder, team e trust surface
+Compila sempre questa sezione, in `full diligence` o in `opacity-compressed`.
+Questa sezione deve restare minima e fattuale: serve a giudicare `execution credibility`, `trust risk` e `key-person risk`, non a fare gossip.
+
+Copri solo cio che conta davvero per la tesi:
+- chi sono founder, team pubblico o figure chiave realmente riconducibili al progetto
+- se sono pubblici, pseudonimi consistenti o sostanzialmente opachi
+- quali progetti rilevanti hanno gia costruito o guidato
+- esiti sintetici del track record precedente: successi, fallimenti, shutdown, exploit, governance blow-up, controversie materiali, problemi legali o reputazionali
+- se esiste dipendenza eccessiva da una singola figura
+- se esistono conflitti di interesse, precedenti pattern di dilution opportunistica, treasury abuse, rug, false disclosure o altre criticita realmente documentate
+
+Per ogni elemento importante distingui sempre:
+- fatto verificabile
+- implicazione analitica
+- cosa resta non dimostrato
+
+Etichette di sintesi ammesse:
+- founder/team track record: `buono / neutro / misto / debole / non verificabile`
+- accountability pubblica: `alta / media / bassa`
+- trust risk: `basso / medio / alto / molto alto`
+
+Regola dura:
+- non usare etichette come `scammer`, `fraud`, `rugger` o equivalenti senza evidenza primaria molto forte, ammissioni, filing, sentenze o documentazione schiacciante
+- se il quadro e grave ma non chiuso giuridicamente, usa formule come:
+  - `controversie reputazionali rilevanti`
+  - `track record fortemente controverso`
+  - `trust risk alto`
+  - `criticita gravi ma non definitivamente provate`
+
+Chiudi sempre la sezione con un mini verdict:
+- founder/team track record: `buono / neutro / misto / debole / non verificabile`
+- accountability pubblica: `alta / media / bassa`
+- trust risk: `basso / medio / alto / molto alto`
+- implicazione principale sulla tesi: una frase secca
 
 12. Thesis-change synthesis
 Analizza in modo obbligatorio gli ultimi `7d`, `30d` e `90d`.
@@ -826,6 +867,7 @@ Chiudi sempre con:
   - `necessità del token per il prodotto` <- `4`, `5`
   - `token quality` <- `6`, `7`
   - `token accrual verdict` <- `7A`
+  - `founder / team / trust surface` <- `11A`, `CT-13`
   - `market setup` <- `12`, `16`, `17`
   - `regime eventi recente` <- `CT-12`
   - `verdict` <- `16`, `17`, `17A`, `18`, `18A`, `19`
@@ -837,6 +879,7 @@ Chiudi sempre con:
 - necessità del token per il prodotto: alta / media / bassa / quasi nulla
 - token quality: alta / media / bassa
 - token accrual verdict: forte / medio / debole / quasi nullo / non dimostrabile
+- founder / team / trust surface: buono / neutro / misto / debole / non verificabile
 - market setup: favorevole / neutro / fragile
 - regime eventi recente: pulito / evento materiale ma transitorio / evento ancora aperto / structural break possibile
 - verdict: sottovalutato / fairly priced / sopravvalutato / non analizzabile con rigore sufficiente
@@ -858,6 +901,8 @@ Chiudi sempre con:
 - Distingui chiaramente fatti, inferenze e speculazioni.
 - Quando citi un numero importante, indica sempre data/snapshot e periodo di riferimento.
 - Non compilare sezioni per cui non hai evidenza sufficiente.
+- Nella sezione founder/team, usa solo fatti rilevanti per execution credibility, trust risk o key-person risk.
+- Nella sezione founder/team, non fare character judgement gratuito e non usare accuse non dimostrate come scorciatoia analitica.
 - Se un dato chiave manca, dillo esplicitamente, spiega perché conta e abbassa la confidenza.
 - Se i numeri non bastano, dillo.
 - Se manca trasparenza su supply, unlock o treasury, consideralo un rischio.
